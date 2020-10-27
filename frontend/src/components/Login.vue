@@ -84,7 +84,7 @@ export default {
   },
   data: () => ({
     tipos_usuario: [
-      { text: 'Standart' },
+      { text: 'Standard' },
       { text: 'Administrador' },
     ],
   }),

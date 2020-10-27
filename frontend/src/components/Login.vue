@@ -52,7 +52,7 @@ export default {
       ) {
         alert("Los campos están vacíos.");
       } else {
-        var datos = {
+        /*var datos = {
           nombUsuario: this.nombreLogin,
           password: this.passLogin
         };
@@ -71,6 +71,7 @@ export default {
             alert("Error al enviar los datos");
           }
         );
+        */
       }
     },
     sleep: function(milliseconds){
@@ -84,7 +85,7 @@ export default {
   },
   data: () => ({
     tipos_usuario: [
-      { text: 'Standart' },
+      { text: 'Standard' },
       { text: 'Administrador' },
     ],
   }),

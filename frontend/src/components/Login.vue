@@ -3,9 +3,7 @@
     <v-content>
       <v-parallax height="1080" src="https://www.10wallpaper.com/wallpaper/1920x1080/1605/Blue_earth_planet-Expanse_Space_HD_Wallpaper_1920x1080.jpg">          
         <v-layout align-center column justify-center>
-          <h1 class="display-3 font-weight-bold">
-            <span style="color: white">Layer Management</span>
-          </h1>
+          <v-img src="../assets/logo.png"></v-img>
         </v-layout>
         <v-container fluid fill-height>
           <v-layout align-center justify-center>
@@ -20,10 +18,14 @@
                     <v-text-field prepend-icon="mdi-lock" name="passLogin" label="Contraseña" id="password" type="password" v-model="passLogin"></v-text-field>
                   </v-form>
                 </v-card-text>
-                  <v-overflow-btn padding="10px" class="my-2" :items="tipos_usuario" label="Tipo de usuario" item-value="text"></v-overflow-btn>
+                <v-layout column>
+                  <v-col cols="3" class="ma-4">
+                    <v-select :items="tipos_usuario" label="Tipo de usuario" item-value="text"></v-select>
+                  </v-col>
+                </v-layout>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn class="white--text" color="#404D57" v-on:click="usuarioLogin">Identificarse</v-btn>
+                  <v-btn class="white--text" height="60" width="300" color="#404D57" v-on:click="usuarioLogin">Identificarse</v-btn>
                 </v-card-actions>
               </v-card>
             </v-flex>
@@ -90,9 +92,3 @@ export default {
   }),
 }
 </script>
-
-<style lang="sass">
-  @import '~vuetify/src/styles/styles.sass'
-
-$overflow-append-inner-width: 100px
-</style>

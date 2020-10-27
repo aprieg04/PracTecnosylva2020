@@ -16,16 +16,13 @@
                   <v-form>
                     <v-text-field prepend-icon="mdi-account-box" name="nombreLogin" label="Nombre de usuario" type="text" v-model="nombreLogin"></v-text-field>
                     <v-text-field prepend-icon="mdi-lock" name="passLogin" label="Contraseña" id="password" type="password" v-model="passLogin"></v-text-field>
+                    <v-select prepend-icon="mdi-badge-account" :items="tipos_usuario" label="Tipo de usuario" item-value="text"></v-select>
                   </v-form>
                 </v-card-text>
-                <v-layout column>
-                  <v-col cols="3" class="ma-4">
-                    <v-select :items="tipos_usuario" label="Tipo de usuario" item-value="text"></v-select>
-                  </v-col>
-                </v-layout>
                 <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn class="white--text" height="60" width="300" color="#404D57" v-on:click="usuarioLogin">Identificarse</v-btn>
+                  <v-row align="center" justify="space-around">
+                    <v-btn class="white--text" height="60" width="200" color="#404D57" v-on:click="usuarioLogin">Identificarse</v-btn>
+                  </v-row>
                 </v-card-actions>
               </v-card>
             </v-flex>

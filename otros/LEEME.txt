@@ -1,0 +1,4 @@
+Para la ejecución:
+abrir dos terminales
+- En una hacer cd ./x/frontend y en este directorio hacer "npm run serve"
+- En otra hacer cd ./x/backend y en este directorio hacer "node app.js" (o el nombre que tenga nuestro archivo de conexión a bbdd)

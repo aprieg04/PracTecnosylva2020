@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import App from '../App.vue'
+import Home from '../layout/Home.vue'
+import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
 
 Vue.use(VueRouter)
 
@@ -8,10 +10,19 @@ export default new VueRouter({
   routes: [
   {
       path: '/',
-      name: 'App',
-      component: App
-    }
-
+      name: 'Home',
+      component: Home
+  },
+  {
+      path: '/login',
+      name: 'Login',
+      component: Login
+  },
+  {
+      path: '/register',
+      name: 'Register',
+      component: Register
+  }
   ],
   mode: "history"
 })

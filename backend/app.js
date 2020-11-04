@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const sequelize = new Sequelize("tecnosylvaprueba", "root", "", {
+const sequelize = new Sequelize("tecnosylva", "root", "", {
   host: "localhost",
   dialect: "mysql",
   define: {
@@ -33,19 +33,33 @@ Usuarios.init(
       autoIncrement: true,
       primaryKey: true
     },
-    nombreUsuario: Sequelize.STRING,
+    nombre: Sequelize.STRING,
     password: Sequelize.STRING,
     creationDate: Sequelize.STRING,
-    tipoUsuario: Sequelize.STRING
+    phoneNumber: Sequelize.STRING,
+    email: Sequelize.STRING,
+    fk_IdEstado: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'estados',
+        key: 'idEstados'
+      }
+    },
+    tipoUsuario: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'tipoUsuarios',
+        key: 'idTipoUsuario'
+      }
+    }
   },
   { sequelize, modelName: "usuarios" }
 );
 
 app.post("/login", function(req, res) {
-  console.log("Toy aqui crack")
   sequelize
     .query(
-      "SELECT idUsuario, nombreUsuario FROM usuarios WHERE (nombreUsuario = '" + req.body.nombUsuario + "' AND password = '" + req.body.password + "' AND tipoUsuario = '" + req.body.tipo + "' )",
+      "SELECT idUsuario, nombreUsuario FROM usuarios WHERE (nombre = '" + req.body.nombUsuario + "' AND password = '" + req.body.password + "' )",
       { type: sequelize.QueryTypes.SELECT }
     )
     .then(users => {

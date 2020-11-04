@@ -28,7 +28,7 @@ sequelize
 class Usuarios extends Sequelize.Model {}
 Usuarios.init(
   {
-    id: {
+    idUsuario: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true
@@ -55,6 +55,130 @@ Usuarios.init(
   },
   { sequelize, modelName: "usuarios" }
 );
+
+class Capas extends Sequelize.Model{}
+Capas.init(
+  {
+    id: {
+      type:Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    nombre: Sequelize.STRING,
+    url: Sequelize.STRING,
+    descripcion: Sequelize.STRING
+  },
+    { sequelize, modelName: "capas" }
+);
+
+class Mapas extends Sequelize.Model{}
+Mapas.init(
+  {
+    id: {
+      type:Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    nombre: Sequelize.STRING,
+    url: Sequelize.STRING,
+    descripcion: Sequelize.STRING
+  },
+    { sequelize, modelName: "mapas" }
+);
+
+class CapasMapas extends Sequelize.Model{}
+CapasMapas.init(
+  {
+    idCapa:{
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      references: {
+        model: 'capas',
+        key: 'idCapa'
+      }
+    },
+    idMapa:{
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      references: {
+        model: 'mapas',
+        key: 'idMapa'
+      }
+    }
+  },
+  { sequelize, modelName: "capasmapas" }
+)
+
+class Estados extends Sequelize.Model{}
+Estados.init(
+  {
+    idEstados:{
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    nombre: Sequelize.STRING,
+    tipoEstados: Sequelize.INTEGER
+  },
+  { sequelize, modelName: "estados" }
+)
+
+class Peticiones extends Sequelize.Model{}
+Peticiones.init(
+  {
+    idPeticiones:{
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    tipoPeticiones: Sequelize.STRING,
+    fk_IdUsuario:
+    {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'usuarios',
+        key: 'idUsuario'
+      }
+    }
+  },
+  { sequelize, modelName: "peticiones"}
+)
+
+class TipoUsuarios extends Sequelize.Model{}
+TipoUsuarios.init(
+  {
+    idTipoUsuario:{
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    usuario: Sequelize.STRING,
+  },
+  { sequelize, modelName: "tipoUsuarios"}
+)
+
+class UsuarioMapas extends Sequelize.Model{}
+UsuarioMapas.init(
+  {
+    idMapa:{
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      references: {
+        model: 'mapas',
+        key: 'idMapa'
+      }
+    },
+    idUsuario:{
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      references: {
+        model: 'usuarios',
+        key: 'idUsuario'
+      }
+    }
+  },
+  { sequelize, modelName: "capasmapas" }
+)
 
 app.post("/login", function(req, res) {
   sequelize

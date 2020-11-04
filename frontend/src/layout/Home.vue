@@ -61,7 +61,7 @@ export default {
         tab: null,
         items: [
         { tab: 'Home', content: 'Contenido home' },
-        { tab: 'About us', content: 'Contenido aboutus' },
+        { tab: 'About us', content: 'Contenido about us' },
         ],
     })
 }

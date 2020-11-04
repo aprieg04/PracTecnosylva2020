@@ -90,19 +90,21 @@ export default {
           password: this.passLogin,
           tipo: this.tipoLogin
         };
-        this.$http.post("http://localhost:8080/login", datos).then(
+        this.$http.post("http://localhost:3000/login", datos).then(
           response => {
             if(response.body != ""){
                 this.$router.push({
                 name: "Principal",
-                params: { idUsuario: response.body[0].id, nombreUsuario: response.body[0].nombreUsuario }
+                params: { idUsuario: response.body[0].id, tipoUsuario: response.body[0].tipoUsuario }
               });
             }
-              
-            else alert("Nombre o contraseña son incorrectos");
+            else
+            {
+              alert("El usuario no existe. Compruebe que tanto nombre como contraseña como el tipo de usuario para el que hace la petición son los correctos.");
+            }
           },
           response => {
-            alert("Error al enviar los datos");
+            alert("Error al enviar los datos.");
           }
         );
       }

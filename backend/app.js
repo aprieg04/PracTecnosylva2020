@@ -33,18 +33,19 @@ Usuarios.init(
       autoIncrement: true,
       primaryKey: true
     },
-    username: Sequelize.STRING,
+    nombreUsuario: Sequelize.STRING,
     password: Sequelize.STRING,
     creationDate: Sequelize.STRING,
-    tipo: Sequelize.STRING
+    tipoUsuario: Sequelize.STRING
   },
   { sequelize, modelName: "usuarios" }
 );
 
 app.post("/login", function(req, res) {
+  console.log("Toy aqui crack")
   sequelize
     .query(
-      "SELECT id, nombreUsuario FROM usuarios WHERE (nombreUsuario = '" + req.body.nombUsuario + "' AND password = '" + req.body.password + "' AND tipo = '" + req.body.tipo + "' )",
+      "SELECT idUsuario, nombreUsuario FROM usuarios WHERE (nombreUsuario = '" + req.body.nombUsuario + "' AND password = '" + req.body.password + "' AND tipoUsuario = '" + req.body.tipo + "' )",
       { type: sequelize.QueryTypes.SELECT }
     )
     .then(users => {

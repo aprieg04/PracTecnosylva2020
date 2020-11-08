@@ -53,7 +53,6 @@
                     <v-text-field prepend-icon="mdi-lock" name="passLogin" label="Contraseña" id="password" type="password" v-model="passLogin"></v-text-field>
                     <v-text-field prepend-icon="mdi-calendar" name="birthdate" label="Fecha de nacimiento" type="date" v-model="birthDate"></v-text-field>
                     <v-text-field prepend-icon="mdi-phone" name="phonenumber" label="Numero de teléfono" id="phoneNumber" type="number" v-model="phonenumber"></v-text-field>
-                    <v-select prepend-icon="mdi-badge-account" :items="tipos_usuario" label="Tipo de usuario" item-value="text" v-model="tipoLogin"></v-select>
                   </v-form>
                 </v-card-text>
                 <v-card-actions>
@@ -76,12 +75,6 @@
 <script>
 export default {
   name: "App",
-  components: {},
-  data: () => ({
-    tipos_usuario: [
-      { text: 'Standard' },
-      { text: 'Administrador' },
-    ],
-  }),
+  components: {}
 }
 </script>

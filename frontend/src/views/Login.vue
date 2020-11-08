@@ -49,9 +49,9 @@
                   <v-form>
                     <v-text-field prepend-icon="mdi-account-box" name="nombreLogin" label="Nombre de usuario" type="text" v-model="nombreLogin"></v-text-field>
                     <v-text-field prepend-icon="mdi-lock" name="passLogin" label="Contraseña" id="password" type="password" v-model="passLogin"></v-text-field>
-                    <v-select prepend-icon="mdi-badge-account" :items="tipos_usuario" label="Tipo de usuario" item-value="text" v-model="tipoLogin"></v-select>
                   </v-form>
                 </v-card-text>
+                <p v-if="error" class="error">Usuario o contraseña incorrectos.</p>
                 <v-card-actions>
                   <v-row align="center" justify="space-around">
                     <v-btn class="white--text" height="60" width="200" color="#404D57" v-on:click="usuarioLogin">Iniciar sesión</v-btn>
@@ -70,32 +70,29 @@
 <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
   
 <script>
+import auth from "../logic/auth.js"
 export default {
   name: "App",
   components: {},
   methods: {
-    usuarioLogin: function() {
-      console.log(location.host);
+    async usuarioLogin() {
       if (
         this.nombreLogin == null ||
         this.nombreLogin == "" ||
         this.passLogin == null ||
-        this.passLogin == "" ||
-        this.tipoLogin == null 
+        this.passLogin == ""
       ) {
         alert("Algún campo está vacío. Asegúrese de rellenar todos los campos.");
       } else {
-        var datos = {
-          nombUsuario: this.nombreLogin,
-          password: this.passLogin,
-          tipo: this.tipoLogin
-        };
-        this.$http.post("http://localhost:3000/login", datos).then(
+        try 
+        {
+          await auth.usuarioLogin(this.nombreLogin, this.passLogin).then(
           response => {
-            if(response.body != ""){
+            console.log(response)
+            if(response.data.login!=false){
+                console.log("Entro aqui")
                 this.$router.push({
-                name: "Principal",
-                params: { idUsuario: response.body[0].id, tipoUsuario: response.body[0].tipoUsuario }
+                name: "Principal"
               });
             }
             else
@@ -104,17 +101,22 @@ export default {
             }
           },
           response => {
-            alert("Error al enviar los datos.");
+            alert(response);
           }
         );
+        }catch (error) {
+        console.log(error);
+        this.error = true;
+        }
       }
-    },
-  },
-  data: () => ({
-    tipos_usuario: [
-      { text: 'Standard' },
-      { text: 'Administrador' },
-    ],
-  }),
+    }
+  }
 }
 </script>
+
+<style>
+.error {
+  margin: 1rem 0 0;
+  color: #ff4a96;
+}
+</style>

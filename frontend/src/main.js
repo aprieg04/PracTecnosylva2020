@@ -4,9 +4,11 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import VueResource from 'vue-resource';
+import * as VeeValidate from 'vee-validate';
 
-Vue.config.productionTip = false
-Vue.use(VueResource)
+Vue.use(VeeValidate);
+Vue.config.productionTip = false;
+Vue.use(VueResource);
 new Vue({
   router,
   store,

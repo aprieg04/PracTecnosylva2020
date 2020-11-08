@@ -183,7 +183,7 @@ UsuarioMapas.init(
 app.post("/login", function(req, res) {
   sequelize
     .query(
-      "SELECT idUsuario, Nombre FROM usuarios WHERE (nombre = '" + req.body.nombUsuario + "' AND password = '" + req.body.password + "' )",
+      "SELECT idUsuario, nombre, tipoUsuario FROM usuarios WHERE (nombre = '" + req.body.nombre + "' AND password = '" + req.body.password + "' )",
       { type: sequelize.QueryTypes.SELECT }
     )
     .then(users => {

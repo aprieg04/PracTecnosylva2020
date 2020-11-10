@@ -48,16 +48,16 @@
                 </v-toolbar>
                 <v-card-text>
                   <v-form>
-                    <v-text-field prepend-icon="mdi-account-box" name="nombreLogin" label="Nombre de usuario" type="text" v-model="nombreLogin"></v-text-field>
-                    <v-text-field prepend-icon="mdi-email-outline" name="emailLogin" label="E-mail" type="email" v-model="emailLogin"></v-text-field>
-                    <v-text-field prepend-icon="mdi-lock" name="passLogin" label="Contraseña" id="password" type="password" v-model="passLogin"></v-text-field>
-                    <v-text-field prepend-icon="mdi-calendar" name="birthdate" label="Fecha de nacimiento" type="date" v-model="birthDate"></v-text-field>
+                    <v-text-field prepend-icon="mdi-account-box" name="nombreRegistro" label="Nombre de usuario" type="text" v-model="nombreRegistro"></v-text-field>
+                    <v-text-field prepend-icon="mdi-email-outline" name="emailRegistro" label="E-mail" type="email" v-model="emailRegistro"></v-text-field>
+                    <v-text-field prepend-icon="mdi-lock" name="passRegistro" label="Contraseña" id="password" type="password" v-model="passRegistro"></v-text-field>
+                    <v-text-field prepend-icon="mdi-lock-check" name="passRep" label="Repita contraseña" id="passwordVer" type="password" v-model="passRegistroVer"></v-text-field>
                     <v-text-field prepend-icon="mdi-phone" name="phonenumber" label="Numero de teléfono" id="phoneNumber" type="number" v-model="phonenumber"></v-text-field>
                   </v-form>
                 </v-card-text>
                 <v-card-actions>
                   <v-row align="center" justify="space-around">
-                    <v-btn class="white--text" height="60" width="200" color="#404D57" v-on:click="usuarioLogin">Registrarme</v-btn>
+                    <v-btn class="white--text" height="60" width="200" color="#404D57" v-on:click="usuarioRegistro">Registrarme</v-btn>
                   </v-row>
                 </v-card-actions>
               </v-card>
@@ -73,8 +73,55 @@
 <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
   
 <script>
+import auth from "../logic/auth.js"
 export default {
   name: "App",
-  components: {}
+  components: {},
+  methods: {
+    async usuarioRegistro() {
+      if (
+        this.nombreRegistro == null ||
+        this.nombreRegistro == "" ||
+        this.passRegistro == null ||
+        this.passRegistro == "" ||
+        this.emailRegistro == "" ||
+        this.emailRegistro == null ||
+        this.passRegistroVer== "" ||
+        this.passRegistroVer == null
+      ) {
+        alert("Algún campo está vacío. Asegúrese de rellenar todos los campos.");
+      } 
+      else if(this.passRegistro != this.passRegistroVer){
+        alert("Las contraseñas no coinciden.");
+      }
+      else {
+        try 
+        {
+          await auth.usuarioRegistro(this.nombreRegistro, this.emailRegistro, this.passRegistro, this.phonenumber).then(
+          response => {
+            console.log(response)
+            if(response.data.signUp!=false){
+              alert("La petición de registro ha sido creada, un administrador la validará y le enviará un correo.");
+              auth.setUserLogged(response.data.accessToken);
+               this.$router.push({
+                  name: "Home"
+                 });
+            }
+            else
+            {
+              alert("Usuario existente. Ya existe un usuario con el mismo nombre o email aportados.");
+            }
+          },
+          response => {
+            alert(response);
+          }
+        );
+        }catch (error) {
+        console.log(error);
+        this.error = true;
+        }
+      }
+    }
+  }
 }
 </script>

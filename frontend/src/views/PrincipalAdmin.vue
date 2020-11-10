@@ -1,7 +1,7 @@
 <template>
     <v-app>
     <h1>
-    Usuario normal
+    Soy un admin
     </h1>
     </v-app>
 </template>

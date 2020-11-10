@@ -1,4 +1,5 @@
 const express = require("express");
+const jwt = require('jsonwebtoken')
 const app = express();
 const bodyParser = require("body-parser");
 const port = 3000;
@@ -8,6 +9,7 @@ var cors = require("cors");
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json())
 
 const sequelize = new Sequelize("tecnosylva", "root", "", {
   host: "localhost",
@@ -180,21 +182,87 @@ UsuarioMapas.init(
   { sequelize, modelName: "capasmapas" }
 )
 
+function authenticateToken(req, res, nex)
+{
+  const authHeader = req.headers['authoritation']
+  const token = authHeader && authHeader.split(' ')[1]
+  if(token == null) return res.sendStatus(401)
+
+  jwt.verify(token, process.env.ACCESS_TOKEN, (err, user) => {
+    if(err) return res.sendStatus(403) //Token inválido
+    req.user=user
+    next()
+  })
+}
+app.listen(port, function() {
+  console.log("Example app listening on port " + 3000);
+});
+
 app.post("/login", function(req, res) {
+
+  //Authenticate user
+  var username = req.body.nombre
+  var password = req.body.password
+  const user = {name: username,
+              password: password}
+
+  const accessToken = jwt.sign(user, ""+process.env.ACCESS_TOKEN, {expiresIn: '36000'})
   sequelize
     .query(
-      "SELECT idUsuario, nombre, tipoUsuario FROM usuarios WHERE (nombre = '" + req.body.nombre + "' AND password = '" + req.body.password + "' )",
+      "SELECT idUsuario, nombre, tipoUsuario, fk_IdEstado FROM usuarios WHERE (nombre = '" + username + "' AND password = '" + password + "' )",
       { type: sequelize.QueryTypes.SELECT }
     )
     .then(users => {
       if (users.length != 0) {
-        res.json(users);
+        res.json({users, accessToken});
       } else {
         res.send({ login: false });
       }
     });
 });
 
-app.listen(port, function() {
-  console.log("Example app listening on port " + 3000);
+app.post("/register", function(req, res) {
+
+  var username = req.body.nombre
+  var pass = req.body.password
+  var mail = req.body.email
+  var phone = req.body.phone
+
+  const user = {name: username,
+    email: mail,
+    password: pass,
+    phone: phone}
+
+  sequelize
+      .query(
+      "SELECT idUsuario, nombre FROM usuarios WHERE (nombre = '" + username + "' OR email = '" + mail + "')",{ 
+        type: sequelize.QueryTypes.SELECT 
+      }
+    )
+    .then(users => {
+      console.log(users);
+      if (users.length != 0) {
+        //Si ya existe
+        res.send({ signUp: false });
+      } else {
+        sequelize.sync().then(() =>
+        //Si no existe
+          Usuarios.create({
+            nombre: username,
+            password: pass,
+            email: mail,
+            phoneNumber: phone,
+            fk_IdEstado: 1,
+            tipoUsuario: 1
+         })
+          .then(()=>{
+            res.send({ signUp: true });
+          })
+          .catch(err => {
+            console.log(err)
+            res.send({ signUp: false });
+          })
+        );
+      }
+    });
 });

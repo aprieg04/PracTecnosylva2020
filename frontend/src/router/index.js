@@ -4,6 +4,7 @@ import Home from '../layout/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Principal from '../views/Principal.vue'
+import PrincipalAdmin from '../views/PrincipalAdmin.vue'
 
 Vue.use(VueRouter)
 
@@ -28,7 +29,12 @@ export default new VueRouter({
       path: '/principal',
       name: 'Principal',
       component: Principal
-  }
+  },
+  {
+    path: '/principalAdmin',
+    name: 'PrincipalAdmin',
+    component: PrincipalAdmin
+}
   ],
   mode: "history"
 })

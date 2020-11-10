@@ -89,15 +89,31 @@ export default {
           await auth.usuarioLogin(this.nombreLogin, this.passLogin).then(
           response => {
             console.log(response)
-            if(response.data.login!=false){
-                console.log("Entro aqui")
-                this.$router.push({
-                name: "Principal"
-              });
+            if(response.data.users[0].fk_IdEstado==1) //No admitido por administrador
+            {
+              alert("El usuario introducido se halla pendiente de aceptación por parte de un administrador. Revise su correo. ")
+            }
+            else{
+              if(response.data.login!=false){
+                auth.setUserLogged(response.data.accessToken);
+                console.log("Token")
+                console.log(response.data.accessToken)
+                if(response.data.users[0].tipoUsuario==1)
+                {
+                  this.$router.push({
+                  name: "Principal"
+                 });
+                }
+                else{
+                  this.$router.push({
+                  name: "PrincipalAdmin"
+                 });
+                }
             }
             else
             {
               alert("El usuario no existe. Compruebe que tanto nombre como contraseña como el tipo de usuario para el que hace la petición son los correctos.");
+            }
             }
           },
           response => {
@@ -113,10 +129,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.error {
-  margin: 1rem 0 0;
-  color: #ff4a96;
-}
-</style>

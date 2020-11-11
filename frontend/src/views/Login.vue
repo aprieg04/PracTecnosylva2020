@@ -109,11 +109,11 @@ export default {
                   name: "PrincipalAdmin"
                  });
                 }
-            }
-            else
-            {
-              alert("El usuario no existe. Compruebe que tanto nombre como contraseña como el tipo de usuario para el que hace la petición son los correctos.");
-            }
+              }
+              else
+              {
+                alert("El usuario no existe. Compruebe que tanto nombre como contraseña como el tipo de usuario para el que hace la petición son los correctos.");
+              }
             }
           },
           response => {

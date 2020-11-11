@@ -5,6 +5,7 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 import VueResource from 'vue-resource';
 import * as VeeValidate from 'vee-validate';
+import 'leaflet/dist/leaflet.css'
 
 Vue.use(VeeValidate);
 Vue.config.productionTip = false;

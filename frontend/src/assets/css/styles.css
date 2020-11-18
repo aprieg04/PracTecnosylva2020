@@ -1,0 +1,497 @@
+.li {
+  text-decoration: none;
+}
+.li:link {
+  color: white;
+}
+.li:hover {
+  color: #f4c671;
+}
+.card {
+  background-color: rgb(192, 192, 192);
+  opacity: 0.7;
+  height: 1000px;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-top: 70px;
+}
+.cardtext {
+  margin-bottom: 70px;
+  color: black;
+  align: center;
+}
+
+body {
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Times New Roman", Times, serif, "Helvetica Neue", Helvetica,
+    sans-serif;
+  /*Suavizar la fuente */
+  -webkit-font-smoothing: antialised;
+  -moz-osx-font-smoothing: antialised;
+}
+
+#header {
+  height: 100px;
+  width: 100%;
+  background: white;
+  border-bottom: 1px solid #ccc;
+  border-top: 5px solid #61dafb;
+}
+#logo {
+  width: 50%;
+  font-size: 20px;
+  float: left;
+  margin-top: 35px;
+}
+
+#logo img {
+  display: block;
+  float: left;
+  height: 50px;
+  margin-top: -20px;
+  margin-right: -10px;
+  margin-left: 30px;
+  border: none;
+  display: inline-block;
+  font-size: 150px;
+  text-shadow: 0 0 10px #222, 1px 1px 0 #450505;
+  color: red;
+  animation: latidos 2.4s infinite;
+  transform-origin: center;
+}
+
+/*Animaciones con:
+  -Porcentaje de avances de la animación */
+@keyframes latidos {
+  from {
+    transform: none;
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  to {
+    transform: none;
+  }
+}
+
+#brand {
+  display: block;
+  margin: 0px;
+  margin-left: 20px;
+  float: left;
+}
+/* El auto ajusta el margen a la pantalla*/
+.center {
+  width: 100%;
+  margin: 0px auto;
+}
+/*Bloquar si un elemento puede estar cerca de un elemento flotante */
+.clearfix {
+  clear: both;
+  float: none;
+  content: "";
+}
+
+#menu {
+  float: right;
+  font-size: 18px;
+}
+
+#menu ul {
+  line-height: 100px;
+  width: 100%;
+  float: right;
+}
+/*Quita los puntos de la lista */
+#menu ul li {
+  list-style: none;
+  display: inline-block;
+  height: 50px;
+  margin-left: 15px;
+  margin-right: 15px;
+  
+}
+/* Quita el subrayado */
+/*Transition sirve para el cambio de color -> Necesario over*/
+#menu a {
+  text-decoration: none;
+  color: #444;
+  transition: 400ms all;
+}
+/*Funciona cuando nos ponemos encima enlace */
+#menu a:hover {
+  color: #61dafb;
+}
+
+#slider {
+  width: 100%;
+  height: 250px;
+  /*line-height: 300px;*/
+  color: white;
+  text-shadow: 0px 0px 5px #444;
+
+  /*DEGRADADP CSS PURO */
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 79, 29, 1) 0%,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 41, 41, 0.9178046218487395) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+
+#slider h1 {
+  margin-right: 0px;
+  margin-top: 0.2px;
+  padding: 0px;
+  padding-top: 100px;
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.btn-white {
+  display: block;
+  background: white;
+  color: black;
+  padding: 0px;
+  /* VERTICAL - HORIZONTAL*/
+  margin: 0px auto;
+  border-radius: 5px;
+  width: 100px;
+  height: 25px;
+  text-transform: uppercase;
+  /*Shadow-> Agrega sobra al texto */
+  text-shadow: none;
+  text-decoration: none;
+  /*LINE HEIGHT NOS DA LA ALTURA DEL TEXRO */
+  line-height: 25px;
+  box-shadow: 0px 0px 5px #ccc;
+  /*TRansition y el over van de la mano a la hora de hacer la transición */
+  transition: 300ms all;
+}
+
+.btn-white:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 79, 29, 1) 0%,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 41, 41, 0.9178046218487395) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  color: white;
+}
+
+.btn-snackbar {
+  display: inline-block;
+  background: rgb(226, 148, 148);
+  color: black;
+
+  /* VERTICAL - HORIZONTAL*/
+  margin: 0px 0px 40px;
+  border-radius: 30px;
+}
+
+#slider.slider-small {
+  height: 150px;
+}
+#slider.slider-small h1 {
+  margin-top: 0.2px;
+  padding-top: 60px;
+  text-align: center;
+}
+
+#content {
+  width: 70%;
+  float: left;
+
+  /*Altura minima */
+  min-height: 650px;
+
+  margin-right: 25px;
+}
+
+/*SIDEBAR  */
+#sidebar {
+  width: 25%;
+  float: left;
+}
+
+.sidebar-item {
+  background-color: rgba(136, 133, 133, 0);
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.sidebar-item h3 {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  margin: 0px 0px 15px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  /*LINEA GRIS DE SEPARACIÓN */
+  border-bottom: 3px solid #eee;
+}
+
+/*PARTE DE SNAKBAR */
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+#snackbar.show {
+  visibility: visible;
+  /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+      However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/*ANIMACIÓN */
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+/*FIN DE SNAKBAR */
+
+.btn {
+  display: block;
+  background: black;
+  color: white;
+  font-family: "Times New Roman", Times, serif;
+  padding: 10px;
+  /*Grueso de la letra */
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  /*Elimina el subrayado */
+  text-decoration: none;
+  max-width: 120px;
+  border-radius: 10px;
+  transition: 300ms all;
+  /*Boton si bordes */
+  border: none;
+  /*Cursor en forma de dedo */
+  cursor: pointer;
+}
+.sidebar-item .btn {
+  /*Establece 20 en margenes superiores e inferiores, y auto en los lados. -> Centrar */
+  margin: 20px auto;
+}
+
+.btn-success {
+  background: rgb(62, 172, 28);
+}
+
+.btn-success:hover {
+  background: black;
+}
+
+.btn-buscar {
+  background: rgb(62, 172, 28);
+  color: white;
+  padding: 6px;
+}
+
+.btn-buscar:hover {
+  background: black;
+}
+
+/*Dentro del buscador */
+input[type="text"],
+textarea {
+  background-color: white;
+  width: 100%;
+  min-height: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+  transition: 300ms all;
+  /*Quitar el borde al selecionar el elemento */
+  outline: none;
+}
+
+/*SObreado exterior cuando estoy dentro -> focus */
+input[type="text"]:focus,
+textarea:focus {
+  box-shadow: 0px 0px 10px #eee inset;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  max-width: 100%;
+  max-height: 300px;
+  min-height: 150px;
+  min-width: 100%;
+}
+.mid-form {
+  width: 60%;
+  margin: 0px auto;
+}
+
+.mid-form label {
+  text-align: left;
+  display: block;
+  float: left;
+  margin-bottom: 5px;
+  font-size: 17px;
+  margin-top: 10px;
+}
+#footer {
+  background: #f7f7f7;
+  width: 100%;
+  height: 70px;
+  /*Distancia entre lienas de texto */
+  line-height: 70px;
+  color: #444;
+  bottom: 0;
+  position: fixed;
+}
+
+#footer p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.article-item {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 35px;
+  padding-top: 20px;
+  text-align: left;
+}
+
+.article-item .image-wrap {
+  width: 130px;
+  height: 130px;
+  /* Contenido recortado */
+  overflow: hidden;
+  float: left;
+  margin-right: 15px;
+  border: 1px solid #ccc;
+}
+
+.article-item .image-wrap img {
+  /* Con este valor, hacemos que la imagen se adecue al tamaño */
+  height: 100%;
+  text-align: center;
+}
+
+.article-item h2 {
+  display: block;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 7px;
+}
+
+.article-item .date {
+  display: block;
+  width: 100%;
+  color: rgb(122, 122, 122);
+}
+
+.article-item a {
+  display: block;
+  color: #444;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.article-item a:hover {
+  text-decoration: underline;
+}
+
+.subheader {
+  font-size: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+.first {
+  font-size: 40px;
+}
+
+.article-detail .image-wrap {
+  float: none;
+  width: 100%;
+  height: 300px;
+  border: none;
+}
+
+.article-detail .image-wrap img {
+  width: 100%;
+  height: auto;
+}
+
+.article-detail .subheader {
+  margin-bottom: 5px;
+  border: none;
+  text-transform: capitalize;
+  font-size: 40px;
+}
+
+.radibuttons {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  float: left;
+  margin-bottom: 15px;
+}

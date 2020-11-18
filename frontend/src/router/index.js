@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Principal from '../views/Principal.vue'
 import PrincipalAdmin from '../views/PrincipalAdmin.vue'
+import EditarUsuario from '../views/EditarUsuario.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,11 @@ export default new VueRouter({
       name: 'Principal',
       component: Principal
   },
+  {
+    path: '/editarUsuario',
+    name: 'EditarUsuario',
+    component: EditarUsuario
+},
   {
     path: '/principalAdmin',
     name: 'PrincipalAdmin',

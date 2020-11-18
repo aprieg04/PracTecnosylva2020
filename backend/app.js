@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json())
 
-const sequelize = new Sequelize("tecnosylva", "root", "", {
+const sequelize = new Sequelize("Tecnosylva", "root", "4e2jpmcs", {
   host: "localhost",
   dialect: "mysql",
   define: {

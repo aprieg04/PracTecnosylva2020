@@ -7,6 +7,7 @@ import Principal from '../views/Principal.vue'
 import PrincipalAdmin from '../views/PrincipalAdmin.vue'
 import EditarUsuario from '../views/EditarUsuario.vue'
 
+
 Vue.use(VueRouter)
 
 export default new VueRouter({

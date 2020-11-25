@@ -1,11 +1,15 @@
 <template>
     <v-app>
-        <router-view/>
+        <!-- Necesario hacer un vif de show para el login -->
+      <router-view></router-view>
     </v-app>
 </template>
 
 <script>
+
+
 export default {
+
     name: "App",
     data(){
         return{};

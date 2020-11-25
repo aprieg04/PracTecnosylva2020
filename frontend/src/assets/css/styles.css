@@ -216,13 +216,13 @@ body {
 
 /*SIDEBAR  */
 #sidebar {
-  width: 25%;
+  width: 50px;
   float: left;
   
 }
 
 .sidebar-item {
-  background-color: rgba(136, 133, 133, 0);
+  background-color: rgba(158, 35, 35, 0);
   padding: 20px;
   margin-top: 30px;
 }

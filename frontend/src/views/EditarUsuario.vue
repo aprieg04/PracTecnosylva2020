@@ -1,6 +1,7 @@
 <template>
 <v-app>
-  <header-component></header-component>
+          <header-component></header-component>
+
     <span> Editor de usuario</span>
 </v-app>
 </template>

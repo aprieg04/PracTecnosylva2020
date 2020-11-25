@@ -1,17 +1,18 @@
 <template>
   <v-app>
     <header-component :username="username"></header-component>
-    <side-bar></side-bar>
-    
+    <side-bar :username="username"></side-bar>
+    <footer-component></footer-component>
   </v-app>
 </template>∫
 <script>
+import FooterComponent from '../views/Footer.vue';
 import HeaderComponent from "../views/HeaderComponent.vue";
 import SideBar from "../views/SideBar.vue";
 
 export default { 
 
-  components: { HeaderComponent, SideBar },
+  components: { HeaderComponent, SideBar, FooterComponent },
   name: "Principal",
   data:
    function(){return {username: ""}},

@@ -1,15 +1,20 @@
 <template>
-  <v-card>
+  <v-card class="v-card-sidebar">
     <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" permanent>
       <v-list-item class="px-2">
         <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/70.jpg"></v-img>
+          <v-img src="../assets/images/Marco.png"></v-img>
         </v-list-item-avatar>
 
-        <v-list-item-title>John Leider</v-list-item-title>
+        <v-list-item-title>{{username}}</v-list-item-title>
 
         <v-btn icon @click.stop="mini = !mini">
-          <v-icon>mdi-chevron-left</v-icon>
+          <v-icon light>
+        mdi-border-color
+      </v-icon>
+         <span class="mdi mdi-account-card-details">
+
+         </span>
         </v-btn>
       </v-list-item>
 
@@ -38,13 +43,17 @@ export default {
       drawer: true,
       items: [
        
-        { title: "Editar Perfil", icon: "mdi-account" },
-        { title: "Editar usuarios", icon: "mdi-account-group-outline" },
-        { title: "Editar capas", icon: "mdi-account-group-outline" },
+        { title: "Editar Perfil", icon: "mdi-football-helmet" },
+        { title: "Editar usuarios", icon: "mdi-account-multiple-outline" },
+        { title: "Capas", icon: "mdi-message-image" },
 
       ],
       mini: true,
     };
+  },
+  props: {
+    username: String
+    
   },
 };
 </script>

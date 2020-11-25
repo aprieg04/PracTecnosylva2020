@@ -16,8 +16,8 @@
         <ul>
           <li>
             <span> Usuario:</span>
-            <router-link :to="{ name: 'EditarUsuario' }" target="_blank">
-              Marco
+            <router-link :to="{ name: 'EditarUsuario.vue' }" target="_blank">
+              {{username}}
             </router-link>
           </li>
           <li>
@@ -36,6 +36,11 @@
 <script>
 export default {
   name: "HeaderComponent",
+  props: {
+    username: String
+    
+  },
+  
 };
 </script>
 

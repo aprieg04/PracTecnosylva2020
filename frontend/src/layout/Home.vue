@@ -28,7 +28,7 @@
         </v-card>
 
         <v-layout column align-center>
-            <v-img max-height="220" max-width="340" src="../assets/logo1.png"></v-img>
+            <v-img max-height="220" max-width="250" src="../assets/images/logo1.png"></v-img>
         </v-layout>
         
         <v-card class="card">
@@ -68,28 +68,6 @@ export default {
 </script>
 
 <style>
-.li{
-    text-decoration: none;
-    
-}
-.li:link{
-    color: white;
-}
-.li:hover{
-    color: #F4C671;
-}
-.card{
-    background-color:rgb(192,192,192);
-    opacity:0.7;
-    height:1000px;
-    margin-left:70px;
-    margin-right:70px;
-    margin-top:70px;
-}
-.cardtext
-{
-    margin-bottom:70px;
-    color:black;
-    align:center;
-}
+
+@import "../assets/css/styles.css";
 </style>

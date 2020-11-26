@@ -35,7 +35,7 @@
         </v-card>
 
         <v-layout column align-center>
-            <v-img max-height="220" max-width="340" src="../assets/logo1.png"></v-img>
+            <v-img max-height="220" max-width="340" src="../assets/images/logo1.png"></v-img>
         </v-layout>
     
         <v-container fluid fill-height>
@@ -101,7 +101,9 @@ export default {
                 if(response.data.users[0].tipoUsuario==1)
                 {
                   this.$router.push({
-                  name: "Principal"
+                  name: "user",
+                  params: { userId: response.data.users[0].idUsuario}
+
                  });
                 }
                 else{
@@ -129,3 +131,8 @@ export default {
   }
 }
 </script>
+
+<style>
+
+@import "../assets/css/styles.css";
+</style>

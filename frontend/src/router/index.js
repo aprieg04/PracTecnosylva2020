@@ -7,6 +7,7 @@ import Principal from '../views/Principal.vue'
 import PrincipalAdmin from '../views/PrincipalAdmin.vue'
 import EditarUsuario from '../views/EditarUsuario.vue'
 import Error from '../views/Error.vue'
+import SolicitudesRegistro from '../components/SolicitudesRegistro.vue'
 
 
 Vue.use(VueRouter)
@@ -38,17 +39,22 @@ export default new VueRouter({
     path: '/user/editarUsuario',
     name: 'EditarUsuario',
     component: EditarUsuario
-},
+  },
   {
     path: '/principalAdmin',
     name: 'PrincipalAdmin',
     component: PrincipalAdmin
-},{
-  path: "/error",
-  component: Error,
-  alias: "404"
-  
-}
+  },
+  {
+    path: "/error",
+    component: Error,
+    alias: "404"
+  },
+  {
+    path: '/solicitudesRegistro',
+    name: 'SolicitudesRegistro',
+    component: SolicitudesRegistro
+  }
   ],
   mode: "history"
 })

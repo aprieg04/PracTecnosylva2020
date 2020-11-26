@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Principal from '../views/Principal.vue'
 import PrincipalAdmin from '../views/PrincipalAdmin.vue'
+import SolicitudesRegistro from '../components/SolicitudesRegistro.vue'
 
 Vue.use(VueRouter)
 
@@ -34,7 +35,12 @@ export default new VueRouter({
     path: '/principalAdmin',
     name: 'PrincipalAdmin',
     component: PrincipalAdmin
-}
+  },
+  {
+    path: '/solicitudesRegistro',
+    name: 'SolicitudesRegistro',
+    component: SolicitudesRegistro
+  }
   ],
   mode: "history"
 })

@@ -72,7 +72,7 @@
 <script>
 import auth from "../logic/auth.js"
 export default {
-  name: "App",
+  name: "Login",
   components: {},
   methods: {
     async usuarioLogin() {
@@ -89,16 +89,13 @@ export default {
           await auth.usuarioLogin(this.nombreLogin, this.passLogin).then(
           response => {
             console.log(response)
-            if(response.data.users[0].fk_IdEstado==1) //No admitido por administrador
+            if(response.users[0].fk_IdEstado==1) //No admitido por administrador
             {
-              alert("El usuario introducido se halla pendiente de aceptación por parte de un administrador. Revise su correo. ")
+              alert("El usuario introducido se halla pendiente de aceptación por parte de un administrador. Revise su correo.");
             }
             else{
-              if(response.data.login!=false){
-                auth.setUserLogged(response.data.accessToken);
-                console.log("Token")
-                console.log(response.data.accessToken)
-                if(response.data.users[0].tipoUsuario==1)
+              if(response.login!=false){
+                if(response.users[0].tipoUsuario==1)
                 {
                   this.$router.push({
                   name: "user",
@@ -114,7 +111,7 @@ export default {
               }
               else
               {
-                alert("El usuario no existe. Compruebe que tanto nombre como contraseña como el tipo de usuario para el que hace la petición son los correctos.");
+                alert("El usuario no existe. Compruebe que tanto nombre como contraseña para el que hace la petición son los correctos.");
               }
             }
           },

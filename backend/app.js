@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json())
 
+
 const sequelize = new Sequelize("Tecnosylva", "root", "pass", {
   host: "188.76.8.6",
   port: 28277,
@@ -41,6 +42,7 @@ Usuarios.init(
     creationDate: Sequelize.STRING,
     phoneNumber: Sequelize.STRING,
     email: Sequelize.STRING,
+    token: Sequelize.STRING,
     fk_IdEstado: {
       type: Sequelize.INTEGER,
       references: {
@@ -69,7 +71,8 @@ Capas.init(
     },
     nombre: Sequelize.STRING,
     url: Sequelize.STRING,
-    descripcion: Sequelize.STRING
+    descripcion: Sequelize.STRING,
+    apikey: Sequelize.STRING
   },
     { sequelize, modelName: "capas" }
 );
@@ -267,3 +270,45 @@ app.post("/register", function(req, res) {
       }
     });
 });
+
+
+app.get("/solicitudesRegistro", function(req, res) {
+  sequelize
+  .query(
+    "SELECT idUsuario, nombre, tipoUsuario, phoneNumber, email FROM usuarios WHERE (fk_idEstado = '1')",
+    { type: sequelize.QueryTypes.SELECT }
+  )
+  .then(data => {
+    if (data.length != 0) {
+      res.json({data});
+    } else {
+      res.send({ petition: false });
+    }
+  });
+});
+
+app.post("/aceptarSolicitud", function(req, res) {
+  var idUs = req.body.idUsuario
+
+  sequelize
+  .query(
+    "UPDATE usuarios SET fk_IdEstado = '2' WHERE ( idUsuario = '"+idUs+"')",
+    { type: sequelize.QueryTypes.UPDATE }
+        ).then(()=>
+        {
+          res.send({ editado: true });
+        })
+},
+
+app.post("/denegarSolicitud", function(req, res) {
+  var idUs = req.body.idUsuario
+
+  sequelize
+  .query(
+    "DELETE FROM usuarios WHERE idUsuario = '"+idUs+"'",
+    { type: sequelize.QueryTypes.DELETE }
+    ).then(()=>
+        {
+          res.send({ eliminado: true });
+        })
+}))

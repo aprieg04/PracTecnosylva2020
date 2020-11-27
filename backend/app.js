@@ -209,7 +209,7 @@ app.post("/login", function(req, res) {
   var password = req.body.password
   const user = {name: username,
               password: password}
-
+    console.log(user)
   const accessToken = jwt.sign(user, ""+process.env.ACCESS_TOKEN, {expiresIn: '36000'})
   sequelize
     .query(
@@ -217,6 +217,7 @@ app.post("/login", function(req, res) {
       { type: sequelize.QueryTypes.SELECT }
     )
     .then(users => {
+      console.log(users)
       if (users.length != 0) {
         res.json({users, accessToken});
       } else {

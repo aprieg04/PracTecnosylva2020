@@ -43,17 +43,17 @@ export default {
       drawer: true,
       items: [
        
-        { title: "Editar Perfil", icon: "mdi-football-helmet" },
-        { title: "Editar usuarios", icon: "mdi-account-multiple-outline" },
-        { title: "Capas", icon: "mdi-message-image" },
+        { title: "Editar perfil", icon: "mdi-account-edit" },
+        { title: "Gestionar capas", icon: "mdi-layers" },
+        { title: "Gestionar usuarios", icon: "mdi-account-multiple-outline" },
 
       ],
       mini: true,
     };
   },
   props: {
-    username: String
-    
+    username: String,
+    type: String
   },
 };
 </script>

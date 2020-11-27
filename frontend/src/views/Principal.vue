@@ -6,9 +6,9 @@
   </v-app>
 </template>∫
 <script>
-import FooterComponent from '../views/Footer.vue';
-import HeaderComponent from "../views/HeaderComponent.vue";
-import SideBar from "../views/SideBar.vue";
+import FooterComponent from '../components/Footer.vue';
+import HeaderComponent from "../components/HeaderComponent.vue";
+import SideBar from "../components/SideBar.vue";
 
 export default { 
 
@@ -18,7 +18,8 @@ export default {
    function(){return {username: ""}},
    /* El mounted, hace que podamos pasarlo a la variable. */
    mounted(){
-     this.username=this.$route.params.id;
+     this.username=this.$route.params.username;
+     this.type=this.$router.params.type;
      
    }
 };

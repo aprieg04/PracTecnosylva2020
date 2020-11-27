@@ -9,7 +9,7 @@
                 <v-tab v-for="item in items" :key="item"> {{ item.tab }}</v-tab>
             </v-tabs>
 
-            <router-link to="/solicitudesRegistro" class="li">
+            <router-link to="/login" class="li">
                 <v-tab right dark color="white">
                     <v-icon>mdi-login</v-icon>
 

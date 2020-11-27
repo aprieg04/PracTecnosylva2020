@@ -98,14 +98,15 @@ export default {
                 if(response.users[0].tipoUsuario==1)
                 {
                   this.$router.push({
-                  name: "user",
-                  params: { userId: response.data.users[0].idUsuario}
+                  name: "Principal",
+                  params: { username: response.users[0].nombre, type: response.users[0].tipoUsuario }
 
                  });
                 }
                 else{
                   this.$router.push({
-                  name: "PrincipalAdmin"
+                  name: "Principal",
+                  params: { username: response.users[0].nombre, type: response.users[0].tipoUsuario }
                  });
                 }
               }

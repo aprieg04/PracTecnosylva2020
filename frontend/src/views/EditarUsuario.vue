@@ -1,17 +1,11 @@
 <template>
 <v-app>
-          <header-component></header-component>
-
-    <span> Editor de usuario</span>
+    <h1> Editor de usuario</h1>
 </v-app>
 </template>
 
 <script>
-import HeaderComponent from '../components/HeaderComponent.vue'
-export default {
-  components: { HeaderComponent },
-name: 'EditarUsuario'
-}
+
 </script>
 
 <style>

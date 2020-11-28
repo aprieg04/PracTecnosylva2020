@@ -5,6 +5,9 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Principal from '../views/Principal.vue'
 import EditarUsuario from '../views/EditarUsuario.vue'
+import GestionUsuarios from '../views/GestionUsuarios.vue'
+import GestionCapas from '../views/GestionCapas.vue'
+import BasePrincipal from '../views/BasePrincipal.vue'
 import Error from '../components/Error.vue'
 import SolicitudesRegistro from '../components/SolicitudesRegistro.vue'
 
@@ -29,15 +32,28 @@ export default new VueRouter({
       component: Register
   },
   {
-      path: '/user/:id',
+      path: '/principal',
       name: 'Principal',
       component: Principal,
-      props: true
-  },
-  {
-    path: '/user/editarUsuario',
-    name: 'EditarUsuario',
-    component: EditarUsuario
+      props: true,
+      children:[
+        {
+          path: '/',
+          component: BasePrincipal
+        },
+        {
+          path: '/principal/gestionUsuarios',
+          component: GestionUsuarios,
+        },
+        {
+          path: '/principal/gestionCapas',
+          component: GestionCapas,
+        },
+        {
+          path: '/principal/editarUsuario',
+          component: EditarUsuario,
+        }
+      ]
   },
   {
     path: "/error",

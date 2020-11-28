@@ -95,19 +95,16 @@ export default {
             }
             else{
               if(response.login!=false){
-                if(response.users[0].tipoUsuario==1)
+                if(response.users[0].fk_IdEstado==3)
                 {
-                  this.$router.push({
-                  name: "Principal",
-                  params: { username: response.users[0].nombre, type: response.users[0].tipoUsuario }
-
-                 });
+                  alert("El usuario ha sido rechazado por los administradores.");
                 }
-                else{
-                  this.$router.push({
-                  name: "Principal",
-                  params: { username: response.users[0].nombre, type: response.users[0].tipoUsuario }
-                 });
+                else
+                {
+                   this.$router.push({
+                    name: "Principal",
+                    params: { username: response.users[0].nombre, type: response.users[0].tipoUsuario }
+                   })
                 }
               }
               else

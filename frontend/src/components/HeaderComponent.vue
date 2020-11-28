@@ -37,8 +37,8 @@
 export default {
   name: "HeaderComponent",
   props: {
-    username: String
-    
+    username: String,
+    type: String
   },
   
 };

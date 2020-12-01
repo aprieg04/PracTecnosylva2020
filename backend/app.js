@@ -272,6 +272,54 @@ app.post("/register", function(req, res) {
     });
 });
 
+app.post("/nuevoUsuario", function(req, res) {
+
+  var username = req.body.nombre
+  var pass = req.body.password
+  var mail = req.body.email
+  var phone = req.body.phone
+  var tipo = req.body.tipo
+
+  const user = {name: username,
+    email: mail,
+    password: pass,
+    type: tipo}
+
+  sequelize
+      .query(
+      "SELECT idUsuario, nombre FROM usuarios WHERE (nombre = '" + username + "' OR email = '" + mail + "')",{ 
+        type: sequelize.QueryTypes.SELECT 
+      }
+    )
+    .then(users => {
+      console.log(users);
+      if (users.length != 0) {
+        //Si ya existe
+        res.send({ signUp: false });
+      } else {
+        sequelize.sync().then(() =>
+        //Si no existe
+          Usuarios.create({
+            nombre: username,
+            password: pass,
+            email: mail,
+            phoneNumber: phone,
+            fk_IdEstado: 2,
+            tipoUsuario: tipo
+         })
+          .then(()=>{
+            res.send({ signUp: true });
+          })
+          .catch(err => {
+            console.log(err)
+            res.send({ signUp: false });
+          })
+        );
+      }
+    });
+});
+
+
 
 app.get("/solicitudesRegistro", function(req, res) {
   sequelize

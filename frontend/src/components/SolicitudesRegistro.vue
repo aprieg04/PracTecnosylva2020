@@ -84,7 +84,7 @@ export default{
           this.$router.go()
               
           })
-      }
+      },
   }
 }
 </script>

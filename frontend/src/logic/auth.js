@@ -30,4 +30,12 @@ export default {
       method: "POST"
     })
   },
+  nuevoUsuario(nombre, email, password, phone, tipo) {
+    const user = { nombre, email, password, phone, tipo };
+    return axios({
+      url: ENDPOINT_PATH+"register",
+      data: user,
+      method: "POST"
+    })
+  },
 };

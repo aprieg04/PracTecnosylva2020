@@ -288,6 +288,21 @@ app.get("/solicitudesRegistro", function(req, res) {
   });
 });
 
+app.get("/obtenerUsuarios", function(req, res) {
+  sequelize
+  .query(
+    "SELECT idUsuario, nombre, tipoUsuario, phoneNumber, email FROM usuarios",
+    { type: sequelize.QueryTypes.SELECT }
+  )
+  .then(data => {
+    if (data.length != 0) {
+      res.json({data});
+    } else {
+      res.send({ petition: false });
+    }
+  });
+});
+
 app.post("/aceptarSolicitud", function(req, res) {
   var idUs = req.body.idUsuario
 

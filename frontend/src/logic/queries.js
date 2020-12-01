@@ -32,5 +32,14 @@ export default {
     .then(response => {
       return response.data;
     });
+},
+obtenerUsuarios() {
+  return axios({
+    url: ENDPOINT_PATH+"obtenerUsuarios",
+    method: "GET"
+  })
+  .then(response => {
+    return response.data;
+  });
 }
 };

@@ -1,7 +1,13 @@
 <template>
    <div id="app">
         <v-app id="inspire">
-        <v-card-title>Solicitudes de registro</v-card-title>
+        <v-card-title>Gestión de usuarios</v-card-title>
+
+        <v-btn color="#B32B2B">
+        <v-icon>mdi-file-outline</v-icon>
+          <span style="margin-left: 7px; margin-right: 7px;">Crear usuario</span>
+        </v-btn>
+
             <v-data-table
             :headers="headers"
             :items="list"
@@ -11,23 +17,20 @@
             :loading="loadingvariable"
             >
             <template v-slot:item.actions="{ item }">
-                <v-icon class="mx-2" color="green" @click="aceptarSolicitud(item.idUsuario)">mdi-check</v-icon>
-                <v-icon color="red" @click="denegarSolicitud(item.idUsuario)">mdi-close</v-icon>
+                <v-icon class="mx-2" color="blue" @click="aceptarSolicitud(item.idUsuario)">mdi-pencil</v-icon>
+                <v-icon color="red" @click="denegarSolicitud(item.idUsuario)">mdi-delete</v-icon>
             </template>
             </v-data-table>
         </v-app>
     </div>
 </template>
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
-
 <script>
 import queries from "../logic/queries.js"
 
 export default{
     mounted() {
-        this.obtenerSolicitudes();
+        this.obtenerUsuarios();
         
     },
     data () {
@@ -39,14 +42,14 @@ export default{
             { text: 'Nombre de usuario', value: 'nombre'},
             { text: 'Número de teléfono', value: 'phoneNumber' },
             { text: 'Email', value: 'email' },
-            { text: 'Aceptar / Rechazar', value: 'actions', sortable: false }
+            { text: 'Editar / Eliminar', value: 'actions', sortable: false }
         ],
     }
   },
   methods: {
-      obtenerSolicitudes() {
+      obtenerUsuarios() {
           this.loadingvariable=true;
-          queries.solicitudesRegistro()
+          queries.obtenerUsuarios()
           .then((response) => {
               console.log(response)
               this.list = response.data;
@@ -67,24 +70,6 @@ export default{
 
           }
       },
-      aceptarSolicitud(idUsuario) {
-          console.log("Entro aceptar")
-          queries.aceptarSolicitud(idUsuario)
-           .then((response) => {
-              console.log(response)
-              this.$router.go()
-              
-          })
-      },
-      denegarSolicitud(idUsuario) {
-          console.log("Entro denegar")
-          console.log(idUsuario)
-          queries.denegarSolicitud(idUsuario)
-          .then((response) => {
-          this.$router.go()
-              
-          })
-      }
   }
 }
 </script>

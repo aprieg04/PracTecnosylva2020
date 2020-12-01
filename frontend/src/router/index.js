@@ -9,7 +9,6 @@ import GestionUsuarios from '../views/GestionUsuarios.vue'
 import GestionCapas from '../views/GestionCapas.vue'
 import BasePrincipal from '../views/BasePrincipal.vue'
 import Error from '../components/Error.vue'
-import SolicitudesRegistro from '../components/SolicitudesRegistro.vue'
 
 
 Vue.use(VueRouter)
@@ -59,11 +58,6 @@ export default new VueRouter({
     path: "/error",
     component: Error,
     alias: "404"
-  },
-  {
-    path: '/solicitudesRegistro',
-    name: 'SolicitudesRegistro',
-    component: SolicitudesRegistro
   }
   ],
   mode: "history"

@@ -535,7 +535,6 @@ textarea {
 
 .navigation-drawer {
   float: left;
-  height: 500px;
   display: inline;
 }
 .px-2 {
@@ -543,7 +542,7 @@ textarea {
 }
 
 .v-card-sidebar {
-  height: 100%;
+  height: fit-content;
   width: fit-content;
   border: none;
   display: inline-block;
@@ -551,13 +550,28 @@ textarea {
 
 
 
+.left{
+  float: left;
+  width: fit-content;
+}
+
+.right{
+  float: right;
+  width: 70%;
+  margin : 50px 120px 0  20px;
+  
+  
+  
+}
+
+
 .mapa {
-  background-color: #61dafb;
+ 
   height: 500px;
   width: 200px;
   float: left;
   top: 0;
-  margin-right: 0;
+  border: solid 1px #ccc;
 }
 
 /* Error 404 */

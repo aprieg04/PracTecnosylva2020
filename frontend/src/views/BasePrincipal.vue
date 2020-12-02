@@ -1,15 +1,18 @@
 <template>
     <v-app>
       <v-container class="mapa"> 
-          <h1>MAPA</h1> 
+          <mapa></mapa>
       </v-container>
+
  
   </v-app>
 </template>
 
 <script>
+import Mapa from '../components/Mapa.vue'
 export default {
-name: 'BasePrincipal'
+  components: { Mapa },
+name: 'BasePrincipal',
 }
 </script>
 

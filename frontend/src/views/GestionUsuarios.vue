@@ -1,11 +1,11 @@
 <template>
 <v-app>
       <v-bottom-nav absolute shift>
-        <v-btn color="#B32B2B" @click="boton=1">
+        <v-btn color="#B32B2B" @click="boton=1" dark>
         <v-icon>mdi-file-outline</v-icon>
           <span style="margin-left: 7px; margin-right: 7px;">Solicitudes de registro</span>
         </v-btn>
-        <v-btn color="#B32B2B" style="margin-left: 10px;" @click="boton=2">
+        <v-btn color="#B32B2B" style="margin-left: 10px;" @click="boton=2" dark>
         <v-icon>mdi-account-cog-outline</v-icon>
           <span style="margin-left: 7px; margin-right: 7px;">Gestionar usuarios</span>
         </v-btn>

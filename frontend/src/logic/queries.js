@@ -41,5 +41,13 @@ obtenerUsuarios() {
   .then(response => {
     return response.data;
   });
-}
+},
+editUsuario(id, nombre, email, password, phone, tipo) {
+  const user = { id, nombre, email, password, phone, tipo };
+  return axios({
+    url: ENDPOINT_PATH+"editUsuario",
+    data: user,
+    method: "POST"
+  })
+},
 };

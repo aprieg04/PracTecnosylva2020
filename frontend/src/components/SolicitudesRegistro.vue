@@ -10,8 +10,10 @@
             loading-text="Loading... Please wait"
             :loading="loadingvariable"
             >
-            <template v-slot:item.actions="{ item }">
+            <template v-slot:item.aceptar="{ item }">
                 <v-icon class="mx-2" color="green" @click="aceptarSolicitud(item.idUsuario)">mdi-check</v-icon>
+            </template>
+            <template v-slot:item.rechazar="{ item }">
                 <v-icon color="red" @click="denegarSolicitud(item.idUsuario)">mdi-close</v-icon>
             </template>
             </v-data-table>
@@ -39,7 +41,8 @@ export default{
             { text: 'Nombre de usuario', value: 'nombre'},
             { text: 'Número de teléfono', value: 'phoneNumber' },
             { text: 'Email', value: 'email' },
-            { text: 'Aceptar / Rechazar', value: 'actions', sortable: false }
+            { text: 'Aceptar', value: 'aceptar', sortable: false },
+            { text: 'Rechazar', value: 'rechazar', sortable: false }
         ],
     }
   },
@@ -81,10 +84,11 @@ export default{
           console.log(idUsuario)
           queries.denegarSolicitud(idUsuario)
           .then((response) => {
-          this.$router.go()
+          obtenerSolicitudes();
               
           })
       },
+
   }
 }
 </script>

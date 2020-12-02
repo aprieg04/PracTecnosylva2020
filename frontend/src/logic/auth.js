@@ -33,7 +33,7 @@ export default {
   nuevoUsuario(nombre, email, password, phone, tipo) {
     const user = { nombre, email, password, phone, tipo };
     return axios({
-      url: ENDPOINT_PATH+"register",
+      url: ENDPOINT_PATH+"nuevoUsuario",
       data: user,
       method: "POST"
     })

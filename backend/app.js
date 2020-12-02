@@ -304,8 +304,8 @@ app.post("/nuevoUsuario", function(req, res) {
             password: pass,
             email: mail,
             phoneNumber: phone,
-            fk_IdEstado: 2,
-            tipoUsuario: tipo
+            tipoUsuario: tipo,
+            fk_IdEstado: 2
          })
           .then(()=>{
             res.send({ signUp: true });
@@ -316,6 +316,43 @@ app.post("/nuevoUsuario", function(req, res) {
           })
         );
       }
+    });
+});
+
+app.post("/editUsuario", function(req, res) {
+  var idUs = req.body.id
+  var username = req.body.nombre
+  var pass = req.body.password
+  var mail = req.body.email
+  var phone = req.body.phone
+  var tipo = req.body.tipo
+
+  const user = {name: username,
+    email: mail,
+    password: pass,
+    type: tipo}
+
+  sequelize
+      .query(
+      "SELECT idUsuario, nombre FROM usuarios WHERE (nombre = '" + username + "' OR email = '" + mail + "')",{ 
+        type: sequelize.QueryTypes.SELECT 
+      }
+    )
+    .then(users => {
+      console.log(users);
+      if (users.length != 0) {
+        //Si ya existe
+        res.send({ signUp: false });
+      } else {
+        sequelize
+        .query(
+          "UPDATE usuarios SET nombre = '"+username+"', phoneNumber = '"+phone+"', email = '"+mail+"', password = '"+pass+"', tipoUsuario = '"+tipo+"' WHERE ( idUsuario = '"+idUs+"')",
+          { type: sequelize.QueryTypes.UPDATE }
+              ).then(()=>
+              {
+                res.send({ editado: true });
+              })
+            }
     });
 });
 
@@ -339,7 +376,7 @@ app.get("/solicitudesRegistro", function(req, res) {
 app.get("/obtenerUsuarios", function(req, res) {
   sequelize
   .query(
-    "SELECT idUsuario, nombre, tipoUsuario, phoneNumber, email FROM usuarios",
+    "SELECT idUsuario, nombre, tipoUsuario, fk_idEstado, phoneNumber, email FROM usuarios",
     { type: sequelize.QueryTypes.SELECT }
   )
   .then(data => {

@@ -31,7 +31,7 @@ export default new VueRouter({
       component: Register
   },
   {
-      path: '/principal',
+      path: '/user/:username',
       name: 'Principal',
       component: Principal,
       props: true,
@@ -41,15 +41,15 @@ export default new VueRouter({
           component: BasePrincipal
         },
         {
-          path: '/principal/gestionUsuarios',
+          path: '/user/gestionUsuarios',
           component: GestionUsuarios,
         },
         {
-          path: '/principal/gestionCapas',
+          path: '/user/gestionCapas',
           component: GestionCapas,
         },
         {
-          path: '/principal/editarUsuario',
+          path: '/user/editarUsuario',
           component: EditarUsuario,
         }
       ]

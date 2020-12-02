@@ -1,5 +1,18 @@
 <template>
-<v-app>
-    <h1> Base principal </h1>
-</v-app>
+    <v-app>
+      <v-container class="mapa"> 
+          <h1>MAPA</h1> 
+      </v-container>
+ 
+  </v-app>
 </template>
+
+<script>
+export default {
+name: 'BasePrincipal'
+}
+</script>
+
+<style>
+
+</style>

@@ -1,8 +1,9 @@
 <template>
   <v-app>
     <header-component :username="username" :type="type"></header-component>
-    <!-- Componente SIDEBAR -->
-    <v-card class="v-card-sidebar">
+    <div class="contenedor" >
+ <!-- Componente SIDEBAR -->
+    <v-card class="v-card-sidebar " >
       <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" permanent>
         <v-list-item class="px-2">
           <v-list-item-avatar>
@@ -32,6 +33,9 @@
         </v-list>
       </v-navigation-drawer>
     </v-card>
+    
+    </div>
+   
     <!-- FIN COMPONENTE SIDEBAR -->
 
     <router-view></router-view>

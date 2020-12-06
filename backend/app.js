@@ -334,7 +334,7 @@ app.post("/editUsuario", function(req, res) {
 
   sequelize
       .query(
-      "SELECT idUsuario, nombre FROM usuarios WHERE (nombre = '" + username + "' OR email = '" + mail + "')",{ 
+      "SELECT idUsuario, nombre FROM usuarios WHERE ((nombre = '" + username + "' OR email = '" + mail + "') AND idUsuario != '"+idUs+"')",{ 
         type: sequelize.QueryTypes.SELECT 
       }
     )

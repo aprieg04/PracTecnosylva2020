@@ -21,14 +21,14 @@
         <v-divider></v-divider>
           <v-card-text>
           <v-spacer/>
-                  <v-form>
-                    <v-text-field prepend-icon="mdi-account-box" name="nombreRegistro" label="Nombre de usuario" type="text" v-model="nombreRegistro"></v-text-field>
-                    <v-text-field prepend-icon="mdi-email-outline" name="emailRegistro" label="E-mail" type="email" v-model="emailRegistro"></v-text-field>
-                    <v-text-field prepend-icon="mdi-lock" name="passRegistro" label="Contraseña" id="password" type="password" v-model="passRegistro"></v-text-field>
-                    <v-text-field prepend-icon="mdi-lock-check" name="passRep" label="Repita contraseña" id="passwordVer" type="password" v-model="passRegistroVer"></v-text-field>
-                    <v-text-field prepend-icon="mdi-phone" name="phonenumber" label="Numero de teléfono" id="phoneNumber" type="number" v-model="phonenumber"></v-text-field>
-                    <v-text-field prepend-icon="mdi-account-key-outline" name="tipo" label="Tipo" id="tipo" type="number" v-model="tipoReg"></v-text-field>
-                  </v-form>
+            <v-form>
+              <v-text-field prepend-icon="mdi-account-box" name="nombreRegistro" label="Nombre de usuario" type="text" v-model="nombreRegistro"></v-text-field>
+              <v-text-field prepend-icon="mdi-email-outline" name="emailRegistro" label="E-mail" type="email" v-model="emailRegistro"></v-text-field>
+              <v-text-field prepend-icon="mdi-lock" name="passRegistro" label="Contraseña" id="password" type="password" v-model="passRegistro"></v-text-field>
+              <v-text-field prepend-icon="mdi-lock-check" name="passRep" label="Repita contraseña" id="passwordVer" type="password" v-model="passRegistroVer"></v-text-field>
+              <v-text-field prepend-icon="mdi-phone" name="phonenumber" label="Numero de teléfono" id="phoneNumber" type="number" v-model="phonenumber"></v-text-field>
+              <v-text-field prepend-icon="mdi-account-key-outline" name="tipo" label="Tipo" id="tipo" type="number" v-model="tipoReg"></v-text-field>
+            </v-form>
           </v-card-text>
   
           <v-divider></v-divider>
@@ -57,25 +57,25 @@
                       <template v-slot:activator="{ on }">
                       <v-icon color="blue" v-on="on" @click="editItem(item)">mdi-pencil</v-icon>
                       </template>
-                    <v-card>
+
+                  <v-card>
                     <v-card-title class="headline red darken-3" primary-title>
                       Editar usuario
                     </v-card-title>
-
                     <v-card-text>
-                            <v-form>
-                              <v-text-field prepend-icon="mdi-account-box" label="Nombre de usuario" type="text" v-model="editedItem.nombre"></v-text-field>
-                              <v-text-field prepend-icon="mdi-email-outline" label="E-mail" type="email" v-model="editedItem.email" ></v-text-field>
-                              <v-text-field prepend-icon="mdi-lock" label="Contraseña" id="password" type="password" v-model="editedItem.pass"></v-text-field>
-                              <v-text-field prepend-icon="mdi-phone" label="Numero de teléfono" id="phoneNumber" type="number" v-model="editedItem.phoneNumber" ></v-text-field>
-                              <v-text-field prepend-icon="mdi-account-key-outline" label="Tipo" id="tipo" type="number" v-model="editedItem.tipoUsuario"></v-text-field>
-                            </v-form>
+                      <v-form>
+                        <v-text-field prepend-icon="mdi-account-box" label="Nombre de usuario" type="text" v-model="editedItem.nombre"></v-text-field>
+                        <v-text-field prepend-icon="mdi-email-outline" label="E-mail" type="email" v-model="editedItem.email" ></v-text-field>
+                        <v-text-field prepend-icon="mdi-lock" label="Contraseña" id="password" type="password" v-model="editedItem.pass"></v-text-field>
+                        <v-text-field prepend-icon="mdi-phone" label="Numero de teléfono" id="phoneNumber" type="number" v-model="editedItem.phoneNumber" ></v-text-field>
+                        <v-text-field prepend-icon="mdi-account-key-outline" label="Tipo" id="tipo" type="number" v-model="editedItem.tipoUsuario"></v-text-field>
+                      </v-form>
                     </v-card-text>
             
                     <v-card-actions>
                       <v-spacer></v-spacer>
                       <v-btn class="white--text" height="60" width="200" color="#B32B2B" @click="dialogEdit=false; editUsuario(item.idUsuario);">Guardar</v-btn>
-                      <v-spacer></v-spacer>
+
                     </v-card-actions>
                   </v-card>
                 </v-dialog>
@@ -88,19 +88,15 @@
               <div class="text-xs-center">
                 <v-dialog v-model="dialogDelete" width="550">
                   <template v-slot:activator="{ on }">
-                  <v-icon color="red" v-on="on" @click="dialogDelete=true;">mdi-delete</v-icon>
+                  <v-icon color="red" v-on="on">mdi-delete</v-icon>
                   </template>
-
-                  <v-card-title class="headline red darken-3" primary-title>
-                      Eliminar usuario
-                    </v-card-title>
 
                   <v-card>
                     <v-card-title class="headline">¿Estás seguro de querer eliminar este usuario?</v-card-title>
                     <v-card-actions>
                       <v-spacer></v-spacer>
-                      <v-btn color="blue darken-1" text @click="dialogDelete=false; denegarSolicitud(item.idUsuario);">OK</v-btn>
-                      <v-spacer></v-spacer>
+                      <v-btn class="white--text" height="60" width="200" color="#B32B2B" @click="dialogDelete=false; denegarSolicitud(item.idUsuario);">OK</v-btn>
+                     
                     </v-card-actions>
                   </v-card>
                 </v-dialog>
@@ -209,33 +205,33 @@ export default{
             alert("El tipo del usuario solo puede ser 1 (Standard) ó 2 (Admin)");
         }
         else {
-          try 
-        {
-          auth.nuevoUsuario(this.nombreRegistro, this.emailRegistro, this.passRegistro, this.phonenumber, this.tipoReg).then(
-          response => {
-            console.log(response)
-            if(response.data.signUp!=false){
-              console.log("Usuario creado")
-              this.obtenerUsuarios();
-              this.nombreRegistro=null;
-              this.passRegistro=null;
-              this.emailRegistro=null;
-              this.passRegistroVer=null;
-              this.tipoReg=null;
+            try 
+          {
+            auth.nuevoUsuario(this.nombreRegistro, this.emailRegistro, this.passRegistro, this.phonenumber, this.tipoReg).then(
+            response => {
+              console.log(response)
+              if(response.data.signUp!=false){
+                console.log("Usuario creado")
+                this.obtenerUsuarios();
+                this.nombreRegistro=null;
+                this.passRegistro=null;
+                this.emailRegistro=null;
+                this.passRegistroVer=null;
+                this.tipoReg=null;
+              }
+              else
+              {
+                alert("Usuario existente. Ya existe un usuario con el mismo nombre o email aportados.");
+              }
+            },
+            response => {
+              alert(response);
             }
-            else
-            {
-              alert("Usuario existente. Ya existe un usuario con el mismo nombre o email aportados.");
-            }
-          },
-          response => {
-            alert(response);
+          );
+          }catch (error) {
+          console.log(error);
+          this.error = true;
           }
-        );
-        }catch (error) {
-        console.log(error);
-        this.error = true;
-        }
         }
       },
       editUsuario(idUsuario) {
@@ -263,11 +259,6 @@ export default{
             if(response.data.signUp!=false){
               console.log("Usuario editado")
               this.obtenerUsuarios();
-              this.nombreEdit=null;
-              this.passEdit=null;
-              this.emailEdit=null;
-              this.tipoRegEdit=null;
-              this.phonenumberEdit=null;
             }
             else
             {

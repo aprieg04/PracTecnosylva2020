@@ -62,9 +62,7 @@
                       Editar usuario
                     </v-card-title>
 
-                  <v-divider></v-divider>
                     <v-card-text>
-                    <v-spacer/>
                             <v-form>
                               <v-text-field prepend-icon="mdi-account-box" label="Nombre de usuario" type="text" v-model="editedItem.nombre"></v-text-field>
                               <v-text-field prepend-icon="mdi-email-outline" label="E-mail" type="email" v-model="editedItem.email" ></v-text-field>
@@ -74,11 +72,10 @@
                             </v-form>
                     </v-card-text>
             
-                    <v-divider></v-divider>
-            
                     <v-card-actions>
                       <v-spacer></v-spacer>
                       <v-btn class="white--text" height="60" width="200" color="#B32B2B" @click="dialogEdit=false; editUsuario(item.idUsuario);">Guardar</v-btn>
+                      <v-spacer></v-spacer>
                     </v-card-actions>
                   </v-card>
                 </v-dialog>
@@ -87,11 +84,29 @@
             <!-- FIN Editar usuario -->
 
             <!-- Eliminar usuario -->
-              <template v-slot:item.eliminar="{ item }">
-              <v-icon color="red" @click="denegarSolicitud(item.idUsuario)">mdi-delete</v-icon>
-            <!-- Fin eliminar usuario -->
+              <template v-slot:item.eliminar="{ item }" >
+              <div class="text-xs-center">
+                <v-dialog v-model="dialogDelete" width="550">
+                  <template v-slot:activator="{ on }">
+                  <v-icon color="red" v-on="on" @click="dialogDelete=true;">mdi-delete</v-icon>
+                  </template>
 
-            </template>
+                  <v-card-title class="headline red darken-3" primary-title>
+                      Eliminar usuario
+                    </v-card-title>
+
+                  <v-card>
+                    <v-card-title class="headline">¿Estás seguro de querer eliminar este usuario?</v-card-title>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn color="blue darken-1" text @click="dialogDelete=false; denegarSolicitud(item.idUsuario);">OK</v-btn>
+                      <v-spacer></v-spacer>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </div>
+              </template>
+              <!-- FIN Eliminar usuario -->
             </v-data-table>
         </v-app>
     </div>
@@ -110,6 +125,7 @@ export default{
     return {
         dialog: false,
         dialogEdit: false,
+        diaogDelete: false,
         nombreRegistro: null, passRegistro: null, emailRegistro: null, tipoReg: null, passRegistroVer: null, phoneNumber: null,
         loadingvariable: true,
         editedItem: {

@@ -50,13 +50,13 @@
             loading-text="Loading... Please wait"
             :loading="loadingvariable"
             >
-            <template v-slot:item.editar="{ item }">
-            <!-- Editar usuario -->
+             <!-- Editar usuario -->
+            <template v-slot:item.editar="{ item }" >
               <div class="text-xs-center">
                 <v-dialog v-model="dialogEdit" width="500">
-                <template v-slot:activator="{ on }">
-                      <v-icon color="blue" v-on="on">mdi-pencil</v-icon>
-                </template>
+                      <template v-slot:activator="{ on }">
+                      <v-icon color="blue" v-on="on" @click="editItem(item)">mdi-pencil</v-icon>
+                      </template>
                     <v-card>
                     <v-card-title class="headline red darken-3" primary-title>
                       Editar usuario
@@ -66,11 +66,11 @@
                     <v-card-text>
                     <v-spacer/>
                             <v-form>
-                              <v-text-field prepend-icon="mdi-account-box" label="Nombre de usuario" type="text" v-model="nombreEdit"></v-text-field>
-                              <v-text-field prepend-icon="mdi-email-outline" label="E-mail" type="email" v-model="emailEdit" ></v-text-field>
-                              <v-text-field prepend-icon="mdi-lock" label="Contraseña" id="password" type="password" v-model="passEdit"></v-text-field>
-                              <v-text-field prepend-icon="mdi-phone" label="Numero de teléfono" id="phoneNumber" type="number" v-model="phonenumberEdit" ></v-text-field>
-                              <v-text-field prepend-icon="mdi-account-key-outline" label="Tipo" id="tipo" type="number" v-model="tipoRegEdit"></v-text-field>
+                              <v-text-field prepend-icon="mdi-account-box" label="Nombre de usuario" type="text" v-model="editedItem.nombre"></v-text-field>
+                              <v-text-field prepend-icon="mdi-email-outline" label="E-mail" type="email" v-model="editedItem.email" ></v-text-field>
+                              <v-text-field prepend-icon="mdi-lock" label="Contraseña" id="password" type="password" v-model="editedItem.pass"></v-text-field>
+                              <v-text-field prepend-icon="mdi-phone" label="Numero de teléfono" id="phoneNumber" type="number" v-model="editedItem.phoneNumber" ></v-text-field>
+                              <v-text-field prepend-icon="mdi-account-key-outline" label="Tipo" id="tipo" type="number" v-model="editedItem.tipoUsuario"></v-text-field>
                             </v-form>
                     </v-card-text>
             
@@ -84,9 +84,12 @@
                 </v-dialog>
               </div>
               </template>
+            <!-- FIN Editar usuario -->
 
+            <!-- Eliminar usuario -->
               <template v-slot:item.eliminar="{ item }">
               <v-icon color="red" @click="denegarSolicitud(item.idUsuario)">mdi-delete</v-icon>
+            <!-- Fin eliminar usuario -->
 
             </template>
             </v-data-table>
@@ -108,8 +111,14 @@ export default{
         dialog: false,
         dialogEdit: false,
         nombreRegistro: null, passRegistro: null, emailRegistro: null, tipoReg: null, passRegistroVer: null, phoneNumber: null,
-        nombreEdit: null, passEdit: null, emailEdit: null, phonenumberEdit: null, tipoRegEdit: null, 
         loadingvariable: true,
+        editedItem: {
+          nombre: "",
+          pass: "",
+          email: "",
+          phoneNumber: "",
+          tipoUsuario: 1,
+        },
         list: [],
         headers: [
             { text: 'ID', align: 'start', value: 'idUsuario' },
@@ -124,6 +133,11 @@ export default{
     }
   },
   methods: {
+    editItem (item) {
+    
+      this.editedItem = Object.assign({}, item)
+      this.dialogEdit = true
+    },
       obtenerUsuarios() {
           this.loadingvariable=true;
           queries.obtenerUsuarios()
@@ -210,24 +224,24 @@ export default{
       },
       editUsuario(idUsuario) {
         if (
-            this.nombreEdit == null ||
-            this.nombreEdit == "" ||
-            this.passEdit == null ||
-            this.passEdit == "" ||
-            this.emailEdit == "" ||
-            this.emailEdit == null ||
-            this.tipoRegEdit == "" ||
-            this.tipoRegEdit == null
+            this.editedItem.nombre == null ||
+            this.editedItem.nombre == "" ||
+            this.editedItem.pass == null ||
+            this.editedItem.pass == "" ||
+            this.editedItem.email== "" ||
+            this.editedItem.email == null ||
+            this.editedItem.phoneNumber == "" ||
+            this.editedItem.phoneNumber == null
         ) {
             alert("Algún campo está vacío. Asegúrese de rellenar todos los campos.");
         } 
-        else if(this.tipoReg > 2 || this.tipoReg < 0){
+        else if(this.editedItem.tipoUsuario > 2 || this.editedItem.tipoUsuario < 0){
             alert("El tipo del usuario solo puede ser 1 (Standard) ó 2 (Admin)");
         }
         else {
           try 
         {
-          queries.editUsuario(idUsuario, this.nombreEdit, this.emailEdit, this.passEdit, this.phonenumberEdit, this.tipoRegEdit).then(
+          queries.editUsuario(idUsuario, this.editedItem.nombre, this.editedItem.email, this.editedItem.pass, this.editedItem.phoneNumber, this.editedItem.tipoUsuario).then(
           response => {
             console.log(response)
             if(response.data.signUp!=false){

@@ -17,5 +17,5 @@ export default {
 </script>
 
 <style>
-  #mapid { height: 100%; width: 100%;}
+  #mapid { height: 100%; width: 100%; border: 1px solid black}
 </style>

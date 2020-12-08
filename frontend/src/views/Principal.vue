@@ -51,7 +51,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item :to="`/user/${this.username}/gestionUsuarios`">
+          <v-list-item v-if="this.tipo==2" :to="`/user/${this.username}/gestionUsuarios`">
             <v-list-item-icon>
               <v-icon>mdi-account-multiple-outline</v-icon>
             </v-list-item-icon>
@@ -85,40 +85,14 @@ export default {
   data: () => ({
     drawer: true,
     username: "",
-    type: null,
-    items: [
-      {
-        title: "Principal",
-        icon: "mdi-map",
-        link: `/user/${this.username}/`,
-      },
-      {
-        title: "Editar perfil",
-        icon: "mdi-account-edit",
-        link: `/user/${this.username}/editarUsuario`,
-      },
-      {
-        title: "Gestionar capas",
-        icon: "mdi-layers",
-        link: `/user/${this.username}/gestionCapas`,
-      },
-      {
-        title: "Gestionar usuarios",
-        icon: "mdi-account-multiple-outline",
-        link: `/user/${this.username}/gestionUsuarios`,
-      },
-    ],
+    tipo: null,
     mini: true,
   }),
-  function() {
-    return { username: "" };
-  },
   /* El mounted, hace que podamos pasarlo a la variable. */
-  beforeMount() {
+  mounted() {
     this.username = this.$route.params.username;
-    this.type = this.$router.params.type;
-    console.log(this.username);
-    console.log(this.type);
+    this.tipo = this.$route.params.tipo;
+  
   },
   /*
   mounted() {

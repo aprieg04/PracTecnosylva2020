@@ -103,7 +103,7 @@ export default {
                 {
                    this.$router.push({
                     name: "Principal",
-                    params: { username: response.users[0].nombre, type: response.users[0].tipoUsuario }
+                    params: { username: response.users[0].nombre, tipo: response.users[0].tipoUsuario }
                    })
                 }
               }

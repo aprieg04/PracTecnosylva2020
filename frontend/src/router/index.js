@@ -35,9 +35,12 @@ export default new VueRouter({
       name: 'Principal',
       component: Principal,
       props: true,
+      redirect: {
+        name: 'BasePrincipal'
+      },
       children:[
          {
-          path: '/',
+          path: '',
           name: 'BasePrincipal',
           component: BasePrincipal,
           

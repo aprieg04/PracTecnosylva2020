@@ -7,8 +7,8 @@ import Principal from '../views/Principal.vue'
 import EditarUsuario from '../views/EditarUsuario.vue'
 import GestionUsuarios from '../views/GestionUsuarios.vue'
 import GestionCapas from '../views/GestionCapas.vue'
-import BasePrincipal from '../views/BasePrincipal.vue'
-import Error from '../components/Error.vue'
+ import BasePrincipal from '../views/BasePrincipal.vue'
+ import Error from '../components/Error.vue'
 
 
 Vue.use(VueRouter)
@@ -31,25 +31,30 @@ export default new VueRouter({
       component: Register
   },
   {
-      path: '/principal',
+      path: '/user/:username',
       name: 'Principal',
       component: Principal,
       props: true,
       children:[
+         {
+          path: '/user/:username',
+          name: 'BasePrincipal',
+          component: BasePrincipal,
+          
+        }, 
         {
-          path: '/',
-          component: BasePrincipal
-        },
-        {
-          path: '/principal/gestionUsuarios',
+          path: '/user/gestionUsuarios',
+          name: 'GestionUsuario',
           component: GestionUsuarios,
         },
         {
-          path: '/principal/gestionCapas',
+          path: '/user/gestionCapas',
+          name: 'GestionCapas',
           component: GestionCapas,
         },
         {
-          path: '/principal/editarUsuario',
+          path: '/user/editarUsuario',
+          name: 'EditarUsuario',
           component: EditarUsuario,
         }
       ]

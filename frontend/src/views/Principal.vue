@@ -19,22 +19,54 @@
         </v-list-item>
 
         <v-divider></v-divider>
-
+<!-- "{ name: item.name, params: {username: this.username} }" -->
         <v-list dense>
-          <v-list-item v-for="item in items" :key="item.title" :to="item.link">
+          <v-list-item :to="`/user/${this.username}/`">
             <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
+              <v-icon>mdi-map</v-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-list-item-title>Principal</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+
+          <v-list-item :to="`/user/${this.username}/editarUsuario`">
+            <v-list-item-icon>
+              <v-icon>mdi-account-edit</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Editar perfil</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item :to="`/user/${this.username}/gestionCapas`">
+            <v-list-item-icon>
+              <v-icon>mdi-layers</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Gestión de capas</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item :to="`/user/${this.username}/gestionUsuarios`">
+            <v-list-item-icon>
+              <v-icon>mdi-account-multiple-outline</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Gestión de usuarios</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
         </v-list>
       </v-navigation-drawer>
     </v-card>
-      <router-view class="right"></router-view>
     <!-- FIN COMPONENTE SIDEBAR -->
+
+    <router-view class="right"></router-view>
 
  </div>
     
@@ -52,21 +84,28 @@ export default {
   name: "Principal",
   data: () => ({
     drawer: true,
+    username: "",
+    type: null,
     items: [
+      {
+        title: "Principal",
+        icon: "mdi-map",
+        link: `/user/${this.username}/`,
+      },
       {
         title: "Editar perfil",
         icon: "mdi-account-edit",
-        link: "/user/editarUsuario",
+        link: `/user/${this.username}/editarUsuario`,
       },
       {
         title: "Gestionar capas",
         icon: "mdi-layers",
-        link: "/user/gestionCapas",
+        link: `/user/${this.username}/gestionCapas`,
       },
       {
         title: "Gestionar usuarios",
         icon: "mdi-account-multiple-outline",
-        link: "/user/gestionUsuarios",
+        link: `/user/${this.username}/gestionUsuarios`,
       },
     ],
     mini: true,
@@ -78,7 +117,23 @@ export default {
   beforeMount() {
     this.username = this.$route.params.username;
     this.type = this.$router.params.type;
+    console.log(this.username);
+    console.log(this.type);
   },
+  /*
+  mounted() {
+    this.isLogged();
+  },
+  methods: {
+    isLogged(){
+      if(this.type==null)
+      {
+        /*Si no esta logeado lo mandamos al login
+        this.$router.push({ name: "Login"})
+      }
+    }
+  }
+  */
 
 };
 </script>

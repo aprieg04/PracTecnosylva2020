@@ -37,23 +37,23 @@ export default new VueRouter({
       props: true,
       children:[
          {
-          path: '/user/:username',
+          path: '/',
           name: 'BasePrincipal',
           component: BasePrincipal,
           
         }, 
         {
-          path: '/user/gestionUsuarios',
+          path: 'gestionUsuarios',
           name: 'GestionUsuario',
           component: GestionUsuarios,
         },
         {
-          path: '/user/gestionCapas',
+          path: 'gestionCapas',
           name: 'GestionCapas',
           component: GestionCapas,
         },
         {
-          path: '/user/editarUsuario',
+          path: 'editarUsuario',
           name: 'EditarUsuario',
           component: EditarUsuario,
         }

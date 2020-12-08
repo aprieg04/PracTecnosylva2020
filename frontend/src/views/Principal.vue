@@ -85,6 +85,7 @@ export default {
   data: () => ({
     drawer: true,
     username: "",
+    idUs: null,
     tipo: null,
     mini: true,
   }),
@@ -92,22 +93,20 @@ export default {
   mounted() {
     this.username = this.$route.params.username;
     this.tipo = this.$route.params.tipo;
-  
-  },
-  /*
-  mounted() {
+    this.idUs = this.$route.params.idUsuario;
     this.isLogged();
+  
   },
   methods: {
     isLogged(){
-      if(this.type==null)
+      if(this.tipo==null)
       {
-        /*Si no esta logeado lo mandamos al login
+        //Si no esta logeado lo mandamos al login
         this.$router.push({ name: "Login"})
       }
     }
   }
-  */
+  
 
 };
 </script>

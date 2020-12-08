@@ -16,14 +16,12 @@
         <ul>
           <li>
             <span> Usuario:</span>
-            <router-link :to="{ name: 'EditarUsuario.vue' }" target="_blank">
               {{username}}
-            </router-link>
           </li>
           <li>
-            <router-link :to="{ name: 'Login' }" target="_blank">
+            <v-btn color="#B32B2B" dark @click="cerrarSesion()">
               Salir
-            </router-link>
+            </v-btn>
           </li>
         </ul>
       </nav>
@@ -40,6 +38,11 @@ export default {
     username: String,
     type: String
   },
+  methods: {
+    cerrarSesion(){
+      this.$router.push({ name: "Home"})
+    }
+  }
   
 };
 </script>

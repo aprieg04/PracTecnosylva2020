@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <header-component :username="username" :type="type"></header-component>
+    <header-component :username="username" :tipo="tipo"></header-component>
     <div class="contenedor">
  <!-- Componente SIDEBAR -->
     <v-card class="v-card-sidebar left" >
@@ -95,6 +95,12 @@ export default {
     this.tipo = this.$route.params.tipo;
     this.idUs = this.$route.params.idUsuario;
     this.isLogged();
+    console.log(this.tipo);
+    console.log(this.idUs);
+    this.$store.commit("setIdUs", this.idUs);
+    this.$store.commit("setTipo", this.tipo);
+    console.log(this.$store.state.idUs)
+    console.log(this.$store.state.tipo)
   
   },
   methods: {
@@ -106,34 +112,24 @@ export default {
       }
     },
     cargaPrincipal(){
-      this.$router.push({
+      this.$router.push({     
       path: `/user/${this.username}/`,
-      params: { idUs: this.idUs }
       })
     },
     cargaEditarUsuario(){
-      this.$router.push({
+      this.$router.push({  
         path: `/user/${this.username}/editarUsuario`,
-        params: { idUs: this.idUs, tipo: this.tipo }
       })
     },
     cargaGestionCapas(){
       this.$router.push({
         path: `/user/${this.username}/gestionCapas`,
-        params: { idUs: this.idUs, tipo: this.tipo }
       })
     }
-  }
-  
-
+  } 
 };
 </script>
 
 <style >
 @import "../assets/css/styles.css";
 </style>
-
-/* Pasamos mediante props del vue router, una url con el nombre de usuario
-el cual corresponde con el id que que hemos guardado en el data. 
-Depues pasamos el username del data, a través del v-bind a la prop del 
-hijo <HeaderCOmponent> */

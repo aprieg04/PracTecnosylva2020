@@ -40,6 +40,8 @@ export default {
   },
   methods: {
     cerrarSesion(){
+      this.$store.commit("setIdUs", null);
+      this.$store.commit("setTipo", null);
       this.$router.push({ name: "Home"})
     }
   }

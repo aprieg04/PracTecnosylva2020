@@ -4,7 +4,6 @@
           <mapa></mapa>
       </v-container>
 
- 
   </v-app>
 </template>
 
@@ -12,17 +11,15 @@
 import Mapa from '../components/Mapa.vue'
 export default {
   components: { Mapa },
-name: 'BasePrincipal',
- data: () => ({
-    idUs: null,
-    tipo: null,
-  }),
-  mounted(){
-    this.tipo = this.$route.params.tipo;
-    this.idUs = this.$route.params.idUs;
-    console.log(this.tipo);
-    console.log(this.idUs);
-  }
+  name: 'BasePrincipal',
+  data: () => ({
+      idUs: null,
+      tipo: null,
+    }),
+    mounted(){
+      this.tipo = this.$store.state.tipo;
+      this.idUs = this.$store.state.idUs;
+    }
 }
 </script>
 

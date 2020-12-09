@@ -12,9 +12,8 @@ export default {
     tipo: null,
   }),
   mounted(){
-    this.tipo = this.$route.params.tipo;
-    this.idUs = this.$route.params.idUs;
-    console.log
+    this.tipo = this.$store.state.tipo;
+    this.idUs = this.$store.state.idUs;
   }
 }
 </script>

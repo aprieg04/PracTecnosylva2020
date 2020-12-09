@@ -21,7 +21,7 @@
         <v-divider></v-divider>
 <!-- "{ name: item.name, params: {username: this.username} }" -->
         <v-list dense>
-          <v-list-item :to="`/user/${this.username}/`">
+          <v-list-item @click="cargaPrincipal()">
             <v-list-item-icon>
               <v-icon>mdi-map</v-icon>
             </v-list-item-icon>
@@ -31,7 +31,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item :to="`/user/${this.username}/editarUsuario`">
+          <v-list-item @click="cargaEditarUsuario()">
             <v-list-item-icon>
               <v-icon>mdi-account-edit</v-icon>
             </v-list-item-icon>
@@ -41,7 +41,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item :to="`/user/${this.username}/gestionCapas`">
+          <v-list-item @click="cargaGestionCapas()">
             <v-list-item-icon>
               <v-icon>mdi-layers</v-icon>
             </v-list-item-icon>
@@ -104,6 +104,24 @@ export default {
         //Si no esta logeado lo mandamos al login
         this.$router.push({ name: "Login"})
       }
+    },
+    cargaPrincipal(){
+      this.$router.push({
+      path: `/user/${this.username}/`,
+      params: { idUs: this.idUs }
+      })
+    },
+    cargaEditarUsuario(){
+      this.$router.push({
+        path: `/user/${this.username}/editarUsuario`,
+        params: { idUs: this.idUs, tipo: this.tipo }
+      })
+    },
+    cargaGestionCapas(){
+      this.$router.push({
+        path: `/user/${this.username}/gestionCapas`,
+        params: { idUs: this.idUs, tipo: this.tipo }
+      })
     }
   }
   

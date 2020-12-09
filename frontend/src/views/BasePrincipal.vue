@@ -15,6 +15,9 @@ export default {
   data: () => ({
       idUs: null,
       tipo: null,
+      listaMapas: {
+        
+      }
     }),
     mounted(){
       this.tipo = this.$store.state.tipo;

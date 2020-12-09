@@ -14,7 +14,7 @@
         </template>
   
         <v-card>
-          <v-card-title class="headline red darken-3" primary-title>
+          <v-card-title class="headline red darken-3 white--text" primary-title>
             Nuevo usuario
           </v-card-title>
 
@@ -59,7 +59,7 @@
                       </template>
 
                   <v-card>
-                    <v-card-title class="headline red darken-3" primary-title>
+                    <v-card-title class="headline red darken-3 white--text" primary-title>
                       Editar usuario
                     </v-card-title>
                     <v-card-text>

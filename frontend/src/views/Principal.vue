@@ -99,8 +99,6 @@ export default {
     console.log(this.idUs);
     this.$store.commit("setIdUs", this.idUs);
     this.$store.commit("setTipo", this.tipo);
-    console.log(this.$store.state.idUs)
-    console.log(this.$store.state.tipo)
   
   },
   methods: {

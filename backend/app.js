@@ -356,6 +356,40 @@ app.post("/editUsuario", function(req, res) {
     });
 });
 
+app.post("/editUsuarioPerfil", function(req, res) {
+  var idUs = req.body.id
+  var username = req.body.nombre
+  var pass = req.body.password
+  var mail = req.body.email
+  var phone = req.body.phone
+
+  const user = {name: username,
+    email: mail,
+    password: pass}
+
+  sequelize
+      .query(
+      "SELECT idUsuario, nombre FROM usuarios WHERE ((nombre = '" + username + "' OR email = '" + mail + "') AND idUsuario != '"+idUs+"')",{ 
+        type: sequelize.QueryTypes.SELECT 
+      }
+    )
+    .then(users => {
+      console.log(users);
+      if (users.length != 0) {
+        //Si ya existe
+        res.send({ signUp: false });
+      } else {
+        sequelize
+        .query(
+          "UPDATE usuarios SET nombre = '"+username+"', phoneNumber = '"+phone+"', email = '"+mail+"', password = '"+pass+"' WHERE ( idUsuario = '"+idUs+"')",
+          { type: sequelize.QueryTypes.UPDATE }
+              ).then(()=>
+              {
+                res.send({ editado: true });
+              })
+            }
+    });
+});
 
 
 app.get("/solicitudesRegistro", function(req, res) {
@@ -399,7 +433,7 @@ app.post("/aceptarSolicitud", function(req, res) {
         {
           res.send({ editado: true });
         })
-},
+});
 
 app.post("/denegarSolicitud", function(req, res) {
   var idUs = req.body.idUsuario
@@ -412,4 +446,21 @@ app.post("/denegarSolicitud", function(req, res) {
         {
           res.send({ eliminado: true });
         })
-}))
+});
+
+app.post("/getUsuario", function(req, res) {
+  var id = req.body.id  
+  console.log(req.body);
+  sequelize
+  .query(
+    "SELECT idUsuario, nombre, tipoUsuario, fk_idEstado, phoneNumber, email FROM usuarios WHERE ( idUsuario = '"+id+"')",
+    { type: sequelize.QueryTypes.SELECT }
+  )
+  .then(data => {
+    if (data.length != 0) {
+      res.json({data});
+    } else {
+      res.send({ petition: false });
+    }
+  });
+});

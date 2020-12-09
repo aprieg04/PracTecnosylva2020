@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     idUs: null,
-    tipo: null
+    tipo: null,
   },
   mutations: {
     setIdUs(state, idUs)

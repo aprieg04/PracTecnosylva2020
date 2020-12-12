@@ -13,8 +13,8 @@ app.use(express.json())
 
 
 const sequelize = new Sequelize("Tecnosylva", "root", "pass", {
-  host: "188.76.8.6",
-  port: 28277,
+  host: "188.76.8.46",
+  port: 1028,
   dialect: "mysql",
   define: {
     timestamps: false
@@ -72,7 +72,15 @@ Capas.init(
     nombre: Sequelize.STRING,
     url: Sequelize.STRING,
     descripcion: Sequelize.STRING,
-    apikey: Sequelize.STRING
+    apikey: Sequelize.STRING,
+    fk_IdUsuario:
+    {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'usuarios',
+        key: 'idUsuario'
+      }
+    }
   },
     { sequelize, modelName: "capas" }
 );

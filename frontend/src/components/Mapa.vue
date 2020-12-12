@@ -37,13 +37,13 @@ export default {
             // layers: [lay_mapbox, lay_bing] // Offending line
             });
         leaflet.control.layers({
-            "Topografia": OpenTopoMap,
-            "HOT      ": OpenStreetMap_HOT,
             "France": OpenStreetMap_France,
+            "Topografia": OpenTopoMap,
+            "HOT": OpenStreetMap_HOT,
             "StadiaDark": Stadia_AlidadeSmoothDark,
             "StadiaOutdoors": Stadia_Outdoors
         }, null, {
-        collapsed: true
+        collapsed: true,
         }).addTo(mymap);
         OpenStreetMap_France.addTo(mymap);
     },

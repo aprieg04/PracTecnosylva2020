@@ -121,7 +121,7 @@ export default{
     return {
         dialog: false,
         dialogEdit: false,
-        diaogDelete: false,
+        dialogDelete: false,
         nombreRegistro: null, passRegistro: null, emailRegistro: null, tipoReg: null, passRegistroVer: null, phoneNumber: null,
         loadingvariable: true,
         editedItem: {
@@ -154,7 +154,6 @@ export default{
           this.loadingvariable=true;
           queries.obtenerUsuarios()
           .then((response) => {
-              console.log(response)
               this.list = response.data;
               this.getDisplay(this.list);
               this.loadingvariable=false;
@@ -209,9 +208,8 @@ export default{
           {
             auth.nuevoUsuario(this.nombreRegistro, this.emailRegistro, this.passRegistro, this.phonenumber, this.tipoReg).then(
             response => {
-              console.log(response)
               if(response.data.signUp!=false){
-                console.log("Usuario creado")
+                
                 this.obtenerUsuarios();
                 this.nombreRegistro=null;
                 this.passRegistro=null;

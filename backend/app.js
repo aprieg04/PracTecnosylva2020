@@ -64,7 +64,7 @@ Usuarios.init(
 class Capas extends Sequelize.Model{}
 Capas.init(
   {
-    id: {
+    idCapa: {
       type:Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true
@@ -471,4 +471,90 @@ app.post("/getUsuario", function(req, res) {
       res.send({ petition: false });
     }
   });
+});
+
+app.get("/obtenerCapasAdmin", function(req, res) {
+  sequelize
+  .query(
+    "SELECT idCapa, nombre, url, descripcion, apikey FROM capas",
+    { type: sequelize.QueryTypes.SELECT }
+  )
+  .then(data => {
+    if (data.length != 0) {
+      res.json({data});
+    } else {
+      res.send({ petition: false });
+    }
+  });
+});
+
+app.get("/obtenerCapasBase", function(req, res) {
+  var id = req.body.id 
+  sequelize
+  .query(
+    "SELECT idCapa, nombre, url, descripcion, apikey FROM capas WHERE ( fk_IdUsuario = '"+id+"')",
+    { type: sequelize.QueryTypes.SELECT }
+  )
+  .then(data => {
+    if (data.length != 0) {
+      res.json({data});
+    } else {
+      res.send({ petition: false });
+    }
+  });
+});
+app.post("/nuevaCapa", function(req, res) {
+
+  var nombre = req.body.nombre
+  var descripcion = req.body.descripcion
+  var url = req.body.url
+  var apikey = req.body.apikey
+  var idUs = req.body.idUs
+      
+  console.log(req.body);
+  
+  sequelize.sync().then(() =>
+  //Si no existe
+    Capas.create({
+      nombre: nombre,
+      descripcion: descripcion,
+      url: url,
+      apikey: apikey,
+      fk_IdUsuario: idUs,
+   })
+    .then(()=>{
+      res.send({ signUp: true });
+    })
+    .catch(err => {
+      console.log(err)
+      res.send({ signUp: false });
+    })
+  );
+});
+app.post("/editCapa", function(req, res) {
+  var idCapa = req.body.id
+  var nombre = req.body.nombre
+  var descripcion = req.body.descripcion
+  var url = req.body.url
+  var apikey = req.body.apikey
+  sequelize
+  .query(
+    "UPDATE capas SET nombre = '"+nombre+"', descripcion = '"+descripcion+"', apikey = '"+apikey+"', url = '"+url+"' WHERE ( idCapa = '"+idCapa+"')",
+    { type: sequelize.QueryTypes.UPDATE }
+        ).then(()=>
+        {
+          res.send({ editado: true });
+        })
+});
+app.post("/eliminarCapa", function(req, res) {
+  var idCapa = req.body.id
+
+  sequelize
+  .query(
+    "DELETE FROM capas WHERE idCapa = '"+idCapa+"'",
+    { type: sequelize.QueryTypes.DELETE }
+    ).then(()=>
+        {
+          res.send({ eliminado: true });
+        })
 });

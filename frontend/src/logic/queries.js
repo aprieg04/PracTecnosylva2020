@@ -69,5 +69,52 @@ editUsuarioPerfil(id, nombre, email, password, phone) {
     method: "POST"
   })
 },
+obtenerCapasBase(id) {
+  const user = { id };
+  return axios({
+    url: ENDPOINT_PATH+"obtenerCapasBase",
+    data: user,
+    method: "GET"
+  })
+  .then(response => {
+    return response.data;
+  });
+},
+obtenerCapasAdmin() {
+  return axios({
+    url: ENDPOINT_PATH+"obtenerCapasAdmin",
+    method: "GET"
+  })
+  .then(response => {
+    return response.data;
+  });
+},
+nuevaCapa(nombre, descripcion, url, apikey, idUs) {
+  const layer = { nombre, descripcion, url, apikey, idUs };
+  return axios({
+    url: ENDPOINT_PATH+"nuevaCapa",
+    data: layer,
+    method: "POST"
+  })
+},
+editCapa(id, nombre, url, descripcion, apikey) {
+  const user = { id, nombre, url, descripcion, apikey };
+  return axios({
+    url: ENDPOINT_PATH+"editCapa",
+    data: user,
+    method: "POST"
+  })
+},
+eliminarCapa(id) {
+  const user = { id };
+    return axios({
+        url: ENDPOINT_PATH+"eliminarCapa",
+        data: user,
+        method: "POST"
+    })
+    .then(response => {
+      return response.data;
+    });
+},
 
 };

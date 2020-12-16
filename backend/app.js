@@ -458,7 +458,6 @@ app.post("/denegarSolicitud", function(req, res) {
 
 app.post("/getUsuario", function(req, res) {
   var id = req.body.id  
-  console.log(req.body);
   sequelize
   .query(
     "SELECT idUsuario, nombre, tipoUsuario, fk_idEstado, phoneNumber, email FROM usuarios WHERE ( idUsuario = '"+id+"')",
@@ -488,8 +487,8 @@ app.get("/obtenerCapasAdmin", function(req, res) {
   });
 });
 
-app.get("/obtenerCapasBase", function(req, res) {
-  var id = req.body.id 
+app.post("/obtenerCapasBase", function(req, res) {
+  var id = req.body.id
   sequelize
   .query(
     "SELECT idCapa, nombre, url, descripcion, apikey FROM capas WHERE ( fk_IdUsuario = '"+id+"')",

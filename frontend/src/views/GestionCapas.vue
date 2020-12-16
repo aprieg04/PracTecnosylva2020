@@ -150,10 +150,8 @@ export default {
           {
               queries.obtenerCapasBase(this.idUs)
                 .then((response) => {
-                    console.log(response)
                     this.list = response.data;
                     this.getDisplay(this.list);
-                    console.log(this.list);
                     this.loadingvariable=false;
                 })
                 .catch((e) => {
@@ -165,9 +163,7 @@ export default {
           {
               queries.obtenerCapasAdmin()
                 .then((response) => {
-                    console.log(response)
                     this.list = response.data;
-                    console.log(this.list);
                     this.getDisplay(this.list);
                     this.loadingvariable=false;
                 })
@@ -207,7 +203,6 @@ export default {
             response => {
               console.log(response)
               if(response.data.signUp!=false){
-                console.log("Capa creada")
                 this.obtenerCapas();
                 this.nombreLayerNueva=null;
                 this.descripcionLayerNueva=null;
@@ -248,8 +243,6 @@ export default {
         else {
           try 
         {
-          console.log("idCapa");
-          console.log(idCapa);
           queries.editCapa(idCapa, this.editedItem.nombre, this.editedItem.url, this.editedItem.descripcion, this.editedItem.apikey).then(
           response => {
             console.log(response)

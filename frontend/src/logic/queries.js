@@ -74,7 +74,7 @@ obtenerCapasBase(id) {
   return axios({
     url: ENDPOINT_PATH+"obtenerCapasBase",
     data: user,
-    method: "GET"
+    method: "POST"
   })
   .then(response => {
     return response.data;

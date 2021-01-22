@@ -60,7 +60,7 @@ export default {
     data: () => ({
         tab: null,
         items: [
-        { tab: 'Home', content: 'Contenido home' },
+        { tab: 'Home', color:"black", content: 'Layer control es una aplicación que permite a los usuarios gestionar capas sobre mapas reales obtenidos de distintos proveedores. \n Esta aplicación ha sido desarrollada por estudiantes de la Universidad de León en colaboración con Tecnosylva.' },
         { tab: 'About us', content: 'Contenido about us' },
         ],
     })

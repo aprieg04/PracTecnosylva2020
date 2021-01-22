@@ -1,5 +1,6 @@
 <template>
     <div id='mapid'></div>
+  
 </template>
 
 <script>
@@ -46,7 +47,34 @@ export default {
         collapsed: true,
         }).addTo(mymap);
         OpenStreetMap_France.addTo(mymap);
-    },
+        var popup = leaflet.popup()
+
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent("Fetching weather info")
+                .openOn(mymap);
+
+            fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + e.latlng.lat + '&lon=' + e.latlng.lng + '&appid=' + "64d94ea6cc6a8050afee1febeb4ad9d9")
+                .then(r => r.json()) 
+                .then(data => { 
+                    // Change this line to show exactly the info you need
+                    popup.setContent(data.weather.map(w => w.description).join(", "))
+                })
+        }
+
+        mymap.on('click', onMapClick)
+            },
+            /*
+       function update_position() {
+           var t = leaflet.tileLayer('http://maps.openweathermap.org/maps/2.0/weather/TA2/{z}/{x}/{y}?'+'&appid=64d94ea6cc6a8050afee1febeb4ad9d9');
+            t.addTo(mymap);
+        setTimeout(update_position, 100000);
+        }
+
+        update_position();
+        }
+        */
     
  }
 </script>

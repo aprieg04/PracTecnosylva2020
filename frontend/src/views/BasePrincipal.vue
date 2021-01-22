@@ -1,9 +1,8 @@
 <template>
     <v-app>
       <v-container class="mapa"> 
-          <mapa></mapa>
+          <mapa/>
       </v-container>
-
        <v-data-table
             :headers="headers"
             :items="list"

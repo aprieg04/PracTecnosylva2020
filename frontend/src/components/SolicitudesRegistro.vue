@@ -75,7 +75,7 @@ export default{
           queries.aceptarSolicitud(idUsuario)
            .then((response) => {
               console.log(response)
-              this.$router.go()
+              this.obtenerSolicitudes();
               
           })
       },
@@ -84,7 +84,7 @@ export default{
           console.log(idUsuario)
           queries.denegarSolicitud(idUsuario)
           .then((response) => {
-          obtenerSolicitudes();
+          this.obtenerSolicitudes();
               
           })
       },

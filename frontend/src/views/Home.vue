@@ -28,21 +28,9 @@
         </v-card>
 
         <v-layout column align-center>
-            <v-img max-height="220" max-width="250" src="../assets/images/logo1.png"></v-img>
+            <v-img max-height="160" max-width="250" src="../assets/images/logo1.png"></v-img>
         </v-layout>
         
-        <v-card class="card">
-            <v-tabs-items v-model="tab">
-                <v-tab-item
-                v-for="item in items"
-                :key="item.tab"
-                >
-                <v-card flat class="cardtext">
-                    <v-card-text>{{ item.content }}</v-card-text>
-                </v-card>
-                </v-tab-item>
-            </v-tabs-items>
-        </v-card>
 
 
         <v-footer color="transparent" height="50">
@@ -60,8 +48,8 @@ export default {
     data: () => ({
         tab: null,
         items: [
-        { tab: 'Home', color:"black", content: 'Layer control es una aplicación que permite a los usuarios gestionar capas sobre mapas reales obtenidos de distintos proveedores. \n Esta aplicación ha sido desarrollada por estudiantes de la Universidad de León en colaboración con Tecnosylva.' },
-        { tab: 'About us', content: 'Contenido about us' },
+        { tab: 'Home'},
+        { tab: 'About us'},
         ],
     })
 }

@@ -13,9 +13,14 @@ app.use(express.json())
 
 
 const sequelize = new Sequelize("Tecnosylva", "root", "pass", {
-  host: "188.76.8.46",
-  port: 1028,
+  host: "87.221.88.155",
+  port: 22529,
   dialect: "mysql",
+  pool: {
+    max: 1,
+    min: 1,
+    idle: 10000
+},
   define: {
     timestamps: false
   }

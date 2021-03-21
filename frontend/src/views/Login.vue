@@ -35,7 +35,7 @@
         </v-card>
 
         <v-layout column align-center>
-            <v-img max-height="220" max-width="340" src="../assets/images/logo1.png"></v-img>
+            <v-img max-height="220" max-width="250" src="../assets/images/logo1.png"></v-img>
         </v-layout>
     
         <v-container fluid fill-height>
